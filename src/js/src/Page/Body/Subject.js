@@ -1,18 +1,33 @@
 import React from 'react';
 import YmalProduct from './YmalProduct';
+import { findByLabelText } from '@testing-library/react';
 
-// const SubjectWrapper = (props) => {
-//     return (
-//         <div>
-//             {props.children}
-//         </div>
-//     )
-// }
+const SubjectWrapper = (props) => {
+    return (
+        <div>
+            {props.children}
+        </div>
+    )
+}
+
+const SubjectProduct = (props) => {
+    return (
+        <div>
+            {props.children}
+        </div>
+    )
+}
+
+const wrapperStyling = {
+    // display: 'flex',
+    // margin: '0',
+    // padding: '0'
+}
 
 const subjectDivStyle = {
     width: '120px', 
     border: '1px solid black', 
-    margin: '30px 0 30px 30px'
+    margin: '20px 0 20px 30px'
 }
 
 const paragraphStyle = {
@@ -23,10 +38,16 @@ const paragraphStyle = {
 const textWrapper = {
     display: 'block', 
     textAlign: 'center', 
-    padding: '20px 10px'
+    padding: '15px 10px'
+}
+
+const listingInfo = {
+    display: 'flex',
+    justifyContent: 'space-between'
 }
 
 const productDetails = {
+    textAlign: 'left',
     fontSize: '12px', 
     fontWeight: 'bold', 
     color: 'black', 
@@ -34,8 +55,10 @@ const productDetails = {
 }
 
 const ymalCount = {
-    fontSize: '12px', 
+    textAlign: 'left',
+    fontSize: '13px', 
     color: 'black', 
+    margin: 0
 }
 
 const bottomBanner = {
@@ -68,19 +91,19 @@ const saveButtonStyling = {
 
 const Subject = ({subjects, ymalProducts}) => {
     return (
-        // <SubjectWrapper>
-            <div>
+        <SubjectWrapper>
+            <div style={wrapperStyling}>
                 {subjects.map((subject, index) => {
                     const {id, name, designer, colour, category} = subject
                     return (
-                        <Subject id={id} name={name} designer={designer} colour={colour} category={category}>
-                            <div>
+                        <SubjectProduct id={id} name={name} designer={designer} colour={colour} category={category}>
+                            <div style={listingInfo}>
                                 <div style={{margin: '30px 0 0 30px'}}>
-                                    <h3 style={{fontWeight: 'bold', margin: 0}}>{designer}</h3>
+                                    <h3 style={{textAlign: 'left', fontWeight: 'bold', margin: 0}}>{designer}</h3>
                                     <p style={productDetails}>{name}  |   {id}</p>
                                     <p style={productDetails}>{colour}  |  {category}</p>
                                 </div>
-                                <div style={{margin: '30px 0 0 30px'}}>
+                                <div style={{margin: '72px 30px 0 0'}}>
                                     <p style={ymalCount}>Items currently in queue:</p>
                                 </div>
                             </div>
@@ -94,17 +117,17 @@ const Subject = ({subjects, ymalProducts}) => {
                                 </div>
                             </div>
                             <div>
-                                <YmalProduct ymalProducts={ymalProducts} />
+                                {/* <YmalProduct ymalProducts={ymalProducts} /> */}
                             </div>
                             <div style={bottomBanner}>
                                 <button style={ymalButtonStyling}>Add YMAL Products</button>
                                 <button style={saveButtonStyling}>Save</button>
                             </div>
-                        </Subject>
+                        </SubjectProduct>
                     ) 
                 } )} 
             </div>
-        // </SubjectWrapper>
+        </SubjectWrapper>
     )
 }
 export default Subject;

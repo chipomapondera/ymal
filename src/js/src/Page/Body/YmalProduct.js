@@ -8,6 +8,14 @@ const YmalProductWrapper = (props) => {
     )
 }
 
+const YmalItem = (props) => {
+    return (
+        <div>
+            {props.children}
+        </div>
+    )
+}
+
 const ymalProductDivStyle = {
     width: '120px', 
     border: '1px solid black', 
@@ -42,7 +50,7 @@ const YmalProduct = ({ymalProducts}) => {
                 {ymalProducts.map((ymalProduct, index) => {
                     const {id, name, designer, colour, category} = ymalProduct
                     return (
-                        <YmalProduct id={id} name={name} designer={designer} colour={colour} category={category}>
+                        <YmalItem id={id} name={name} designer={designer} colour={colour} category={category}>
                             <div key={index} style={ymalProductDivStyle}>
                                 <div style={textWrapper}>
                                     <p style={paragraphStyle}>{id}</p>
@@ -55,7 +63,7 @@ const YmalProduct = ({ymalProducts}) => {
                                 <button style={removeButtonStyling}>Remove</button>
                                 </div>
                             </div>
-                        </YmalProduct>
+                        </YmalItem>
                     ) 
                 } )} 
             </div>

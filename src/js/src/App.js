@@ -1,6 +1,6 @@
 import React, { Component} from 'react';
 import Container from './Page/Container';
-import StylingServicePage from './Page/SSPage';
+import SSPage from './Page/SSPage';
 import './App.css';
 import {getAllSubjects, getAllYmalProducts} from './client';
 import {
@@ -14,10 +14,13 @@ const getIndicator = () => {
 
 class App extends Component {
 
-  state = {
-    subjects: [],
-    ymalProducts: [],
-    isFetching: false
+  constructor() {
+      super()
+      this.state = {
+      subjects: [],
+      ymalProducts: [],
+      isFetching: false
+    }
   }
 
   componentDidMount() {
@@ -30,14 +33,14 @@ class App extends Component {
       isFetching: true
     });
     getAllSubjects()
-      .then(res => res.json()
+      .then(res => res.json())
       .then(subjects => {
-      console.log(subjects);
-      this.setState({
-        subjects,
-        isFetching: false
+         console.log(subjects);
+         this.setState({
+           subjects,
+           isFetching: false
+        })
       });
-    }));
   }
 
   fetchYmalProducts = () => {
@@ -45,14 +48,14 @@ class App extends Component {
       isFetching: true
     });
     getAllYmalProducts()
-      .then(res => res.json()
+      .then(res => res.json())
       .then(ymalProducts => {
-      console.log(ymalProducts);
-      this.setState({
-        ymalProducts,
-        isFetching: false
-      })
-    }));
+         console.log(ymalProducts);
+         this.setState({
+           ymalProducts,
+           isFetching: false
+        })
+    });
   }
 
   render() {
@@ -68,7 +71,7 @@ class App extends Component {
     }
 
     return(
-      <StylingServicePage subjects={subjects} ymalProducts={ymalProducts} />
+      <SSPage subjects={subjects} ymalProducts={ymalProducts} />
     )
   }
 }

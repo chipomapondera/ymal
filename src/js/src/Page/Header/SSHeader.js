@@ -6,12 +6,14 @@ const headerStyle = {
     justifyContent: 'center', 
     alignItems: 'center', 
     backgroundColor: '#000000', 
-    height: '80px'
+    height: '70px'
 }
 
 const headerText = {
-    fontSize: '14px', 
+    fontSize: '20px', 
     fontWeight: 'bold', 
+    letterSpacing: '2px',
+    wordSpacing: '15px',
     color: '#ffffff', 
     margin: '0 auto'
 }
