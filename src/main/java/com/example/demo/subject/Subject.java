@@ -8,11 +8,22 @@ public class Subject {
 
     @Id
     private int id;
-
     private String name;
     private String designer;
     private String colour;
     private String category;
+
+    public Subject() {
+        super();
+    }
+
+    public Subject(int id, String name, String designer, String colour, String category) {
+        this.id = id;
+        this.name = name;
+        this.designer = designer;
+        this.colour = colour;
+        this.category = category;
+    }
 
     public int getId() {
         return id;

@@ -14,6 +14,18 @@ public class YmalProduct {
     private String colour;
     private String category;
 
+    public YmalProduct() {
+        super();
+    }
+
+    public YmalProduct(int id, String name, String designer, String colour, String category) {
+        this.id = id;
+        this.name = name;
+        this.designer = designer;
+        this.colour = colour;
+        this.category = category;
+    }
+
     public int getId() {
         return id;
     }
