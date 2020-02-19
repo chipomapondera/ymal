@@ -5,7 +5,7 @@ import './App.css';
 import {getAllSubjects, getAllYmalProducts} from './client';
 import {
   Spin,
-  Icon,
+  Icon
 } from 'antd';
 
 const getIndicator = () => {
@@ -14,18 +14,34 @@ const getIndicator = () => {
 
 class App extends Component {
 
-  constructor() {
-      super()
+  constructor(props) {
+      super(props)
       this.state = {
       subjects: [],
       ymalProducts: [],
-      isFetching: false
+      isFetching: false,
+      isAddSubjectModalVisible: false,
+      isAddYmalModalVisible: false,
     }
   }
 
   componentDidMount() {
     this.fetchSubjects();
     this.fetchYmalProducts();
+  }
+
+  openAddSubjectModal = () => {
+    this.setState({isAddSubjectModalVisible: true})
+  }
+  closeAddSubjectModal = () => {
+    this.setState({isAddSubjectModalVisible: false})
+  }
+
+  openAddYmalModal = () => {
+    this.setState({isAddYmalModalVisible: true})
+  }
+  closeAddYmalModal = () => {
+    this.setState({isAddYmalModalVisible: false})
   }
 
   fetchSubjects = () => {
@@ -60,7 +76,7 @@ class App extends Component {
 
   render() {
 
-    const {subjects, ymalProducts, isFetching} = this.state;
+    const {subjects, ymalProducts, isFetching, isAddSubjectModalVisible, isAddYmalModalVisible} = this.state;
 
     if(isFetching) {
       return(
@@ -71,7 +87,14 @@ class App extends Component {
     }
 
     return(
-      <SSPage subjects={subjects} ymalProducts={ymalProducts} />
+      <SSPage 
+        subjects={subjects} 
+        ymalProducts={ymalProducts} 
+        isAddSubjectModalVisible={isAddSubjectModalVisible} 
+        isAddYmalModalVisible={isAddYmalModalVisible} 
+        openAddSubjectModal={this.openAddSubjectModal.bind(this)}
+        openAddYmalModal={this.openAddYmalModal.bind(this)}
+      />
     )
   }
 }

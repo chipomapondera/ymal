@@ -10,11 +10,24 @@ const BodyWrapper = (props) => {
     )
 }
 
-const SSBody = ({subjects, ymalProducts}) => {
+const bodyStyling = {
+    display: 'flex',
+    flexDirection: 'row'
+}
+
+const SSBody = ({subjects, ymalProducts, isAddSubjectModalVisible, isAddYmalModalVisible, openAddSubjectModal, openAddYmalModal}) => {
     return (
-        <BodyWrapper>
-            <Subject subjects={subjects} ymalProducts={ymalProducts} />
-            <SSFooter />
+        <BodyWrapper style={bodyStyling}>
+                <Subject 
+                    subjects={subjects} 
+                    ymalProducts={ymalProducts} 
+                    isAddYmalModalVisible={isAddYmalModalVisible}
+                    openAddSubjectModal={openAddSubjectModal} 
+                />
+                <SSFooter 
+                    isAddSubjectModalVisible={isAddSubjectModalVisible} 
+                    openAddYmalModal={openAddYmalModal} 
+                />
         </BodyWrapper>
     )
 }

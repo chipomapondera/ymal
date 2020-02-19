@@ -16,10 +16,20 @@ const YmalItem = (props) => {
     )
 }
 
+const wrapperStyling = {
+    display: 'flex',
+    flexDirection: 'row',
+    width: '1100px',
+    justifyContent: 'flex-start'
+}
+
 const ymalProductDivStyle = {
     width: '120px', 
-    border: '1px solid black', 
-    margin: '30px 0 30px 30px'
+    border: '1px solid black',
+    textAlign: 'center',
+    display: 'flex',
+    flexDirection: 'column',
+    margin: '30px 15px'
 }
 
 const paragraphStyle = {
@@ -30,23 +40,25 @@ const paragraphStyle = {
 const textWrapper = {
     display: 'block', 
     textAlign: 'center', 
-    padding: '20px 10px'
+    padding: '10px 10px 5px'
 }
 
 const removeButtonStyling = {
-    marginRight: '30px', 
-    width: '120px', 
-    height: '30px', 
-    backgroundColor: 'black', 
+    width: '70px', 
+    height: '15px', 
+    backgroundColor: 'white',
+    border: '1px solid white', 
     fontSize: '10px', 
-    fontWeight: 'bold', 
-    color: 'white'
+    textDecoration: 'underline',
+    color: 'black',
+    padding: '0',
+    marginBottom: '10px'
 }
 
 const YmalProduct = ({ymalProducts}) => {
     return (
         <YmalProductWrapper>
-            <div>
+            <div style={wrapperStyling}>
                 {ymalProducts.map((ymalProduct, index) => {
                     const {id, name, designer, colour, category} = ymalProduct
                     return (
