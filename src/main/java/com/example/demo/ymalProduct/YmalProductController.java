@@ -23,16 +23,16 @@ public class YmalProductController {
         return ymalProductService.getAllYmalProducts();
     }
 
-//    @CrossOrigin(origins = "http://localhost:3000")
-//    @PostMapping(path = "/ymalproducts")
-//    public YmalProduct addYmalProduct(@RequestBody YmalProduct ymalProduct) {
-//        ymalProductRepository.save(ymalProduct);
-//        return ymalProduct;
-//    }
-//
-//    @CrossOrigin(origins = "http://localhost:3000")
-//    @DeleteMapping(path = "/ymalproducts/{id}")
-//    public void deleteYmalProduct(@PathVariable int id) {
-//        ymalProductRepository.deleteById(id);
-//    }
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping(path = "/ymalproducts")
+    public YmalProduct addYmalProduct(@RequestBody YmalProduct ymalProduct) {
+        ymalProductRepository.save(ymalProduct);
+        return ymalProduct;
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @DeleteMapping(path = "/ymalproducts/{id}")
+    public void deleteYmalProduct(@PathVariable int id) {
+        ymalProductRepository.deleteById(id);
+    }
 }

@@ -23,13 +23,13 @@ public class SubjectController {
         return subjectService.getAllSubjects();
     }
 
-//    @CrossOrigin(origins = "http://localhost:3000")
-//    @PostMapping(path = "/subjects")
-//    public Subject addSubject(@RequestBody Subject subject) {
-//        subjectRepository.save(subject);
-//        return subject;
-//    }
-//
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping(path = "/subjects")
+    public Subject addSubject(@RequestBody Subject subject) {
+        subjectRepository.save(subject);
+        return subject;
+    }
+
 //    @CrossOrigin(origins = "http://localhost:3000")
 //    @DeleteMapping(path = "/subjects/{id}")
 //    public void deleteSubject(@PathVariable int id) {

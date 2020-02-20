@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Container from '../Container';
 import {Modal} from 'antd';
+import AddYmalProductForm from '../Forms/AddYmalProductForm';
 
 const bottomBanner = {
     display: 'flex',
@@ -65,7 +66,7 @@ class ProductFooter extends Component {
                         onCancel={this.closeAddYmalModal}
                         width={900}
                     >
-                        <h1>Add a new YMAL Product</h1>
+                        <AddYmalProductForm />
                     </Modal>
                 </Container>
             </div>

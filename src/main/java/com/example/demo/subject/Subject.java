@@ -1,5 +1,7 @@
 package com.example.demo.subject;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -17,7 +19,12 @@ public class Subject {
         super();
     }
 
-    public Subject(int id, String name, String designer, String colour, String category) {
+    public Subject(
+            @JsonProperty("id") int id,
+            @JsonProperty("name") String name,
+            @JsonProperty("designer") String designer,
+            @JsonProperty("colour") String colour,
+            @JsonProperty("category") String category) {
         this.id = id;
         this.name = name;
         this.designer = designer;
@@ -63,5 +70,16 @@ public class Subject {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    @Override
+    public String toString() {
+        return "Subject{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", designer='" + designer + '\'' +
+                ", colour='" + colour + '\'' +
+                ", category='" + category + '\'' +
+                '}';
     }
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 import YmalProduct from './YmalProduct';
 import ProductFooter from './ProductFooter';
+import {Popconfirm} from 'antd';
 
 const SubjectWrapper = (props) => {
     return (
@@ -121,7 +122,7 @@ const Subject = ({subjects, ymalProducts, openAddYmalModal}) => {
                                         <p style={paragraphStyle}>{category}</p>
                                     </div>
                                     <div>
-                                    <button style={removeButtonStyling}>Remove</button>
+                                        <button style={removeButtonStyling}>Remove</button>
                                     </div>
                                 </div>
                                 <div style={ymalListing}>

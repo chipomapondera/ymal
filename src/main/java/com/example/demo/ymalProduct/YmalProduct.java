@@ -1,5 +1,7 @@
 package com.example.demo.ymalProduct;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -18,7 +20,12 @@ public class YmalProduct {
         super();
     }
 
-    public YmalProduct(int id, String name, String designer, String colour, String category) {
+    public YmalProduct(
+            @JsonProperty("id") int id,
+            @JsonProperty("name") String name,
+            @JsonProperty("designer") String designer,
+            @JsonProperty("colour") String colour,
+            @JsonProperty("category") String category) {
         this.id = id;
         this.name = name;
         this.designer = designer;
@@ -64,5 +71,16 @@ public class YmalProduct {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    @Override
+    public String toString() {
+        return "YmalProduct{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", designer='" + designer + '\'' +
+                ", colour='" + colour + '\'' +
+                ", category='" + category + '\'' +
+                '}';
     }
 }

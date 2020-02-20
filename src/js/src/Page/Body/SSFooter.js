@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Container from '../Container';
-import {Modal} from 'antd';
+import {Modal, Input, Button} from 'antd';
+import AddSubjectForm from '../Forms/AddSubjectForm';
 
 const footerStyling = {
     display: 'flex', 
@@ -44,15 +45,15 @@ class SSFooter extends Component {
         return(
             <div style={footerStyling}>
                 <Container>
-                    <button style={footerButtonStyling} onClick={this.openAddSubjectModal}>Add new Product +</button>
+                    <button style={footerButtonStyling} onClick={this.openAddSubjectModal}>Add New Product +</button>
                     <Modal
-                        title='Add new Product'
+                        title='Add New Product'
                         visible={isAddSubjectModalVisible} 
                         onOk={this.closeAddSubjectModal}
                         onCancel={this.closeAddSubjectModal}
                         width={900}
                     >
-                        <h1>Add a new Product</h1>
+                        <AddSubjectForm />
                     </Modal>
                 </Container>
             </div>
