@@ -4,8 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
-import org.springframework.validation.beanvalidation.SpringValidatorAdapter;
-
 import java.util.List;
 
 @Repository
@@ -21,7 +19,7 @@ public class SubjectDataAccessService {
     List<Subject> selectAllSubjects() {
         String sql = "" +
                 "SELECT "+
-                " id," +
+                " subject_id," +
                 " name, " +
                 " designer, " +
                 " colour, " +
@@ -32,13 +30,13 @@ public class SubjectDataAccessService {
 
     private RowMapper<Subject> mapSubjectFromDb() {
         return (resultSet, i) -> {
-            Integer id = resultSet.getInt("id");
+            Integer subject_id = resultSet.getInt("subject_id");
             String name = resultSet.getString("name");
             String designer = resultSet.getString("designer");
             String colour = resultSet.getString("colour");
             String category = resultSet.getString("category");
             return new Subject(
-                    id,
+                    subject_id,
                     name,
                     designer,
                     colour,

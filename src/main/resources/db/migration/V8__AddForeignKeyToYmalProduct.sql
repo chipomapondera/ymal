@@ -1,0 +1,1 @@
+ALTER TABLE ymal_product ADD CONSTRAINT fk_subject_id FOREIGN KEY (subject_id) REFERENCES subject(subject_id) ON UPDATE CASCADE ON DELETE CASCADE;

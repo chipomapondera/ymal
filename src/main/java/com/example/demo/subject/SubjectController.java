@@ -17,13 +17,13 @@ public class SubjectController {
     @Autowired
     SubjectRepository subjectRepository;
 
-    @CrossOrigin(origins = "http://localhost:3000")
+//    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping(path = "/subjects")
     public List<Subject> getAllSubjects() {
         return subjectService.getAllSubjects();
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
+//    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping(path = "/subjects")
     public Subject addSubject(@RequestBody Subject subject) {
         subjectRepository.save(subject);
@@ -31,8 +31,8 @@ public class SubjectController {
     }
 
 //    @CrossOrigin(origins = "http://localhost:3000")
-//    @DeleteMapping(path = "/subjects/{id}")
-//    public void deleteSubject(@PathVariable int id) {
-//        subjectRepository.deleteById(id);
-//    }
+    @DeleteMapping(path = "/subjects/{subject_id}")
+    public void deleteSubject(@PathVariable int subject_id) {
+        subjectRepository.deleteById(subject_id);
+    }
 }

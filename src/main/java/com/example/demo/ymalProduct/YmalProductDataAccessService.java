@@ -4,8 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
-
-import javax.persistence.Id;
 import java.util.List;
 
 @Repository
@@ -21,7 +19,7 @@ public class YmalProductDataAccessService {
     List<YmalProduct> selectAllYmalProducts() {
         String sql = "" +
                 "SELECT "+
-                " id," +
+                " ymal_id," +
                 " name, " +
                 " designer, " +
                 " colour, " +
@@ -32,13 +30,13 @@ public class YmalProductDataAccessService {
 
     private RowMapper<YmalProduct> mapYmalProductFromDb() {
         return (resultSet, i) -> {
-            Integer id = resultSet.getInt("id");
+            Integer ymal_id = resultSet.getInt("ymal_id");
             String name = resultSet.getString("name");
             String designer = resultSet.getString("designer");
             String colour = resultSet.getString("colour");
             String category =  resultSet.getString("category");
             return new YmalProduct(
-                    id,
+                    ymal_id,
                     name,
                     designer,
                     colour,

@@ -1,44 +1,49 @@
 package com.example.demo.ymalProduct;
 
+import com.example.demo.subject.Subject;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(name="ymal_product")
 public class YmalProduct {
 
     @Id
-    private int id;
+    private int ymal_id;
 
     private String name;
     private String designer;
     private String colour;
     private String category;
 
+    @ManyToOne
+    @JoinColumn(name="subject_id", nullable=false)
+    private Subject subject;
+
+    public int getId() {
+        return ymal_id;
+    }
+
     public YmalProduct() {
         super();
     }
 
     public YmalProduct(
-            @JsonProperty("id") int id,
+            @JsonProperty("ymal_id") int ymal_id,
             @JsonProperty("name") String name,
             @JsonProperty("designer") String designer,
             @JsonProperty("colour") String colour,
             @JsonProperty("category") String category) {
-        this.id = id;
+        this.ymal_id = ymal_id;
         this.name = name;
         this.designer = designer;
         this.colour = colour;
         this.category = category;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+    public void setId(int ymal_id) {
+        this.ymal_id = ymal_id;
     }
 
     public String getName() {
@@ -73,10 +78,18 @@ public class YmalProduct {
         this.category = category;
     }
 
+    public Subject getSubject() {
+        return subject;
+    }
+
+    public void setSubject(Subject subject) {
+        this.subject = subject;
+    }
+
     @Override
     public String toString() {
         return "YmalProduct{" +
-                "id=" + id +
+                "ymal_id=" + ymal_id +
                 ", name='" + name + '\'' +
                 ", designer='" + designer + '\'' +
                 ", colour='" + colour + '\'' +

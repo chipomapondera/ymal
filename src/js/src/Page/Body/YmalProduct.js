@@ -1,4 +1,5 @@
 import React from 'react';
+import {deleteYmalProduct} from '../../client';
 
 const YmalProductWrapper = (props) => {
     return (
@@ -55,6 +56,10 @@ const removeButtonStyling = {
     marginBottom: '10px'
 }
 
+const deleteProduct = () => {
+    deleteYmalProduct()
+}
+
 const YmalProduct = ({ymalProducts}) => {
     return (
         <YmalProductWrapper>
@@ -72,7 +77,7 @@ const YmalProduct = ({ymalProducts}) => {
                                     <p style={paragraphStyle}>{category}</p>
                                 </div>
                                 <div>
-                                <button style={removeButtonStyling}>Remove</button>
+                                <button style={removeButtonStyling} onClick={deleteProduct}>Remove</button>
                                 </div>
                             </div>
                         </YmalItem>

@@ -17,13 +17,13 @@ public class YmalProductController {
     @Autowired
     YmalProductRepository ymalProductRepository;
 
-    @CrossOrigin(origins = "http://localhost:3000")
+//    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping(path = "/ymalproducts")
     public List<YmalProduct> getAllYmalProducts() {
         return ymalProductService.getAllYmalProducts();
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
+//    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping(path = "/ymalproducts")
     public YmalProduct addYmalProduct(@RequestBody YmalProduct ymalProduct) {
         ymalProductRepository.save(ymalProduct);
@@ -31,8 +31,8 @@ public class YmalProductController {
     }
 
     @CrossOrigin(origins = "http://localhost:3000")
-    @DeleteMapping(path = "/ymalproducts/{id}")
-    public void deleteYmalProduct(@PathVariable int id) {
-        ymalProductRepository.deleteById(id);
+    @DeleteMapping(path = "/ymalproducts/{ymal_id}")
+    public void deleteYmalProduct(@PathVariable int ymal_id) {
+        ymalProductRepository.deleteById(ymal_id);
     }
 }

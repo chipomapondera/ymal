@@ -1,0 +1,1 @@
+ALTER TABLE ymal_product CHANGE id ymal_id INTEGER NOT NULL;

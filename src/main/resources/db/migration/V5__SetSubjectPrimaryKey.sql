@@ -1,0 +1,1 @@
+ALTER TABLE subject ADD PRIMARY KEY (`subject_id`);

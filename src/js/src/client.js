@@ -23,11 +23,20 @@ export const addNewSubject = (subject) => {
         body: JSON.stringify(subject)
     });
 }
+// export const deleteSubject = (id) => {
+//     return fetch(`/subjects/${id}`, {
+//         method: 'DELETE',
+//         mode: 'CORS'
+//     })
+//     .then(checkStatus);
+// }
+
 export const deleteSubject = (id) => {
     return fetch(`/subjects/${id}`, {
-        method: 'DELETE'
+        method: 'DELETE',
+        mode: 'CORS'
     })
-    .then(checkStatus);
+    .then(console.log('remove Subject button clicked'))
 }
 
 export const getAllYmalProducts = () => fetch('/ymalproducts');
@@ -40,11 +49,19 @@ export const addNewYmalProduct = (ymalProduct) => {
         body: JSON.stringify(ymalProduct)
     });
 }
+// export const deleteYmalProduct = (id) => {
+//     return fetch(`/ymalProducts/${id}`, {
+//         method: 'DELETE',
+//     })
+//     .then(checkStatus);
+// }
+
 export const deleteYmalProduct = (id) => {
     return fetch(`/ymalProducts/${id}`, {
-        method: 'DELETE'
+        method: 'DELETE',
+        mode: 'CORS'
     })
-    .then(checkStatus);
+    .then(console.log('remove YMAL button clicked'))
 }
 
 

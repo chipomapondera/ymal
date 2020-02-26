@@ -1,0 +1,1 @@
+ALTER TABLE ymal_product ADD subject_id INT(11) NOT NULL;
