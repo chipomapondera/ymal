@@ -3,7 +3,7 @@ import Container from './Container';
 import SSHeader from './Header/SSHeader';
 import SSBody from './Body/SSBody';
 
-const SSPage = ({subjects, ymalProducts, isAddSubjectModalVisible, isAddYmalModalVisible, openAddSubjectModal, openAddYmalModal}) => {
+const SSPage = ({subjects, ymalProducts, isFetching, isAddSubjectModalVisible, isAddYmalModalVisible, openAddSubjectModal, openAddYmalModal}) => {
     
     if(subjects && subjects.length) {
         return (
@@ -12,6 +12,7 @@ const SSPage = ({subjects, ymalProducts, isAddSubjectModalVisible, isAddYmalModa
                 <SSBody 
                     subjects={subjects} 
                     ymalProducts={ymalProducts} 
+                    isFetching={isFetching}
                     isAddSubjectModalVisible={isAddSubjectModalVisible} 
                     isAddYmalModalVisible={isAddYmalModalVisible}
                     openAddSubjectModal={openAddSubjectModal} 

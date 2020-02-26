@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Container from '../Container';
 import {Modal, Input, Button} from 'antd';
 import AddSubjectForm from '../Forms/AddSubjectForm';
+import {getAllSubjects, getAllYmalProducts} from '../../client';
 
 const footerStyling = {
     display: 'flex', 
@@ -29,7 +30,8 @@ class SSFooter extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            isAddSubjectModalVisible: false
+            isAddSubjectModalVisible: false,
+            isFetching: false
         }
     };
 
@@ -39,6 +41,36 @@ class SSFooter extends Component {
     closeAddSubjectModal = () => {
         this.setState({isAddSubjectModalVisible: false})
     };
+
+    fetchSubjects = () => {
+        this.setState({
+            isFetching: true
+        });
+        getAllSubjects()
+        .then(res => res.json())
+        .then(subjects => {
+            console.log('new subjects added' + subjects);
+            this.setState({
+                subjects,
+                isFetching: false
+            })
+        });
+    }
+
+    fetchYmalProducts = () => {
+        this.setState({
+            isFetching: true
+        });
+        getAllYmalProducts()
+        .then(res => res.json())
+        .then(ymalProducts => {
+            console.log('new subjects added' + ymalProducts);
+            this.setState({
+                ymalProducts,
+                isFetching: false
+            })
+        });
+    }
 
     render() {
         const {isAddSubjectModalVisible} = this.state;
@@ -53,7 +85,12 @@ class SSFooter extends Component {
                         onCancel={this.closeAddSubjectModal}
                         width={900}
                     >
-                        <AddSubjectForm />
+                        <AddSubjectForm onSuccess={() => {
+                            this.closeAddSubjectModal();
+                            this.fetchSubjects();
+                            this.fetchYmalProducts();
+                        }} 
+                        />
                     </Modal>
                 </Container>
             </div>

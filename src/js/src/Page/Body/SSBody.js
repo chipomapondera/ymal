@@ -15,16 +15,18 @@ const bodyStyling = {
     flexDirection: 'row'
 }
 
-const SSBody = ({subjects, ymalProducts, isAddSubjectModalVisible, isAddYmalModalVisible, openAddSubjectModal, openAddYmalModal}) => {
+const SSBody = ({subjects, ymalProducts, isFetching, isAddSubjectModalVisible, isAddYmalModalVisible, openAddSubjectModal, openAddYmalModal}) => {
     return (
         <BodyWrapper style={bodyStyling}>
                 <Subject 
                     subjects={subjects} 
                     ymalProducts={ymalProducts} 
+                    isFetching={isFetching}
                     isAddYmalModalVisible={isAddYmalModalVisible}
                     openAddSubjectModal={openAddSubjectModal} 
                 />
                 <SSFooter 
+                    isFetching={isFetching}
                     isAddSubjectModalVisible={isAddSubjectModalVisible} 
                     openAddYmalModal={openAddYmalModal} 
                 />

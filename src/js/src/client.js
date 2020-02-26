@@ -36,7 +36,7 @@ export const deleteSubject = (id) => {
         method: 'DELETE',
         mode: 'CORS'
     })
-    .then(console.log('remove Subject button clicked'))
+    .then(res => res)
 }
 
 export const getAllYmalProducts = () => fetch('api/ymalproducts');
@@ -59,7 +59,7 @@ export const addNewYmalProduct = (ymalProduct) => {
 export const deleteYmalProduct = (id) => {
     return fetch(`api/ymalProducts/${id}`, {
         method: 'DELETE',
-        // mode: 'CORS'
+        mode: 'CORS'
     })
     .then(console.log('remove YMAL button clicked'))
 }

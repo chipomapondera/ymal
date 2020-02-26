@@ -90,6 +90,7 @@ class App extends Component {
       <SSPage 
         subjects={subjects} 
         ymalProducts={ymalProducts} 
+        isFetching={isFetching}
         isAddSubjectModalVisible={isAddSubjectModalVisible} 
         isAddYmalModalVisible={isAddYmalModalVisible} 
         openAddSubjectModal={this.openAddSubjectModal.bind(this)}

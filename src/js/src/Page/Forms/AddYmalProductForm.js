@@ -57,7 +57,7 @@ class AddYmalProductForm extends Component {
                     }}
                     onSubmit={(ymalProduct, { setSubmitting }) => {
                         addNewYmalProduct(ymalProduct).then(() => {
-                                alert(JSON.stringify(ymalProduct));
+                                this.props.onSuccess();
                                 setSubmitting(false);
                         })
                     }}

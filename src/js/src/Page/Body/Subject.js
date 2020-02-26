@@ -20,8 +20,8 @@ const SubjectProduct = (props) => {
     )
 }
 
-const deleteProduct = () => {
-    deleteSubject()
+const deleteSubjectProduct = (id) => {
+    deleteSubject(id)
 }
 
 const wrapperStyling = {
@@ -127,7 +127,7 @@ const Subject = ({subjects, ymalProducts, openAddYmalModal}) => {
                                         <p style={paragraphStyle}>{category}</p>
                                     </div>
                                     <div>
-                                        <button style={removeButtonStyling} onClick={deleteProduct}>Remove</button>
+                                        <button style={removeButtonStyling} onClick={()=>deleteSubjectProduct(id)}>Remove</button>
                                     </div>
                                 </div>
                                 <div style={ymalListing}>

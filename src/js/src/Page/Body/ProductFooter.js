@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Container from '../Container';
 import {Modal} from 'antd';
 import AddYmalProductForm from '../Forms/AddYmalProductForm';
+import {getAllSubjects, getAllYmalProducts} from '../../client';
 
 const bottomBanner = {
     display: 'flex',
@@ -39,7 +40,8 @@ class ProductFooter extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            isAddYmalModalVisible: false
+            isAddYmalModalVisible: false,
+            isFetching: false
         }
     };
 
@@ -49,6 +51,36 @@ class ProductFooter extends Component {
       closeAddYmalModal = () => {
         this.setState({isAddYmalModalVisible: false})
       }
+
+      fetchSubjects = () => {
+        this.setState({
+            isFetching: true
+        });
+        getAllSubjects()
+        .then(res => res.json())
+        .then(subjects => {
+            console.log(subjects);
+            this.setState({
+                subjects,
+                isFetching: false
+            })
+        });
+    }
+
+    fetchYmalProducts = () => {
+        this.setState({
+            isFetching: true
+        });
+        getAllYmalProducts()
+        .then(res => res.json())
+        .then(ymalProducts => {
+            console.log(ymalProducts);
+            this.setState({
+                ymalProducts,
+                isFetching: false
+            })
+        });
+    }
 
     render() {
         const {isAddYmalModalVisible} = this.state;
@@ -66,7 +98,12 @@ class ProductFooter extends Component {
                         onCancel={this.closeAddYmalModal}
                         width={900}
                     >
-                        <AddYmalProductForm />
+                        <AddYmalProductForm onSuccess={() => {
+                            this.closeAddYmalModal();
+                            this.fetchSubjects();
+                            this.fetchYmalProducts();
+                        }} 
+                        />
                     </Modal>
                 </Container>
             </div>
