@@ -56,8 +56,8 @@ const removeButtonStyling = {
     marginBottom: '10px'
 }
 
-const deleteProduct = () => {
-    deleteYmalProduct()
+const deleteProduct = (id) => { 
+    deleteYmalProduct(id);
 }
 
 const YmalProduct = ({ymalProducts}) => {
@@ -65,10 +65,10 @@ const YmalProduct = ({ymalProducts}) => {
         <YmalProductWrapper>
             <div style={wrapperStyling}>
                 {ymalProducts.map((ymalProduct, index) => {
-                    const {id, name, designer, colour, category} = ymalProduct
+                    const {key, id, name, designer, colour, category} = ymalProduct
                     return (
-                        <YmalItem id={id} name={name} designer={designer} colour={colour} category={category}>
-                            <div key={index} style={ymalProductDivStyle}>
+                        <YmalItem key={ymalProduct.id} id={id} name={name} designer={designer} colour={colour} category={category}>
+                            <div style={ymalProductDivStyle}>
                                 <div style={textWrapper}>
                                     <p style={paragraphStyle}>{id}</p>
                                     <p style={paragraphStyle}>{name}</p>
@@ -77,7 +77,7 @@ const YmalProduct = ({ymalProducts}) => {
                                     <p style={paragraphStyle}>{category}</p>
                                 </div>
                                 <div>
-                                <button style={removeButtonStyling} onClick={deleteProduct}>Remove</button>
+                                <button style={removeButtonStyling} onClick={()=>deleteProduct(id)} >Remove</button>
                                 </div>
                             </div>
                         </YmalItem>

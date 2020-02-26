@@ -13,9 +13,9 @@ const checkStatus = (response) => {
     }
 }
 
-export const getAllSubjects = () => fetch('/subjects');
+export const getAllSubjects = () => fetch('api/subjects');
 export const addNewSubject = (subject) => {
-    return fetch('/subjects', {
+    return fetch('api/subjects', {
         headers: {
             'Content-Type': 'application/json'
         },
@@ -24,7 +24,7 @@ export const addNewSubject = (subject) => {
     });
 }
 // export const deleteSubject = (id) => {
-//     return fetch(`/subjects/${id}`, {
+//     return fetch(`api/subjects/${id}`, {
 //         method: 'DELETE',
 //         mode: 'CORS'
 //     })
@@ -32,16 +32,16 @@ export const addNewSubject = (subject) => {
 // }
 
 export const deleteSubject = (id) => {
-    return fetch(`/subjects/${id}`, {
+    return fetch(`api/subjects/${id}`, {
         method: 'DELETE',
         mode: 'CORS'
     })
     .then(console.log('remove Subject button clicked'))
 }
 
-export const getAllYmalProducts = () => fetch('/ymalproducts');
+export const getAllYmalProducts = () => fetch('api/ymalproducts');
 export const addNewYmalProduct = (ymalProduct) => {
-    return fetch('/ymalproducts', {
+    return fetch('api/ymalproducts', {
         headers: {
             'Content-Type': 'application/json'
         },
@@ -50,16 +50,16 @@ export const addNewYmalProduct = (ymalProduct) => {
     });
 }
 // export const deleteYmalProduct = (id) => {
-//     return fetch(`/ymalProducts/${id}`, {
+//     return fetch(`api/ymalProducts/${id}`, {
 //         method: 'DELETE',
 //     })
 //     .then(checkStatus);
 // }
 
 export const deleteYmalProduct = (id) => {
-    return fetch(`/ymalProducts/${id}`, {
+    return fetch(`api/ymalProducts/${id}`, {
         method: 'DELETE',
-        mode: 'CORS'
+        // mode: 'CORS'
     })
     .then(console.log('remove YMAL button clicked'))
 }

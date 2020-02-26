@@ -32,7 +32,7 @@ public class SubjectController {
 
 //    @CrossOrigin(origins = "http://localhost:3000")
     @DeleteMapping(path = "/subjects/{subject_id}")
-    public void deleteSubject(@PathVariable int subject_id) {
+    public void deleteSubject(@PathVariable("subject_id") int subject_id) {
         subjectRepository.deleteById(subject_id);
     }
 }

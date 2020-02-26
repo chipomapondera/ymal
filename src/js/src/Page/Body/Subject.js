@@ -118,7 +118,7 @@ const Subject = ({subjects, ymalProducts, openAddYmalModal}) => {
                                 </div>
                             </div>
                             <div style={productWrapper}>
-                                <div key={index} style={subjectDivStyle}>
+                                <div key={subject.id} style={subjectDivStyle}>
                                     <div style={textWrapper}>
                                         <p style={paragraphStyle}>{id}</p>
                                         <p style={paragraphStyle}>{name}</p>
