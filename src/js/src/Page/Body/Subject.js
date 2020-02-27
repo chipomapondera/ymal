@@ -101,7 +101,8 @@ const Subject = ({subjects, ymalProducts, openAddYmalModal}) => {
         <SubjectWrapper>
             <div style={wrapperStyling}>
                 {subjects.map((subject, index) => {
-                    const {id, name, designer, colour, category} = subject
+                    const {id, name, designer, colour, category, ymalProductList} = subject
+                    const ymalProducts = subject.ymalProductList
                     const numberOfYmals = ymalProducts.length
                     return (
                         <SubjectProduct 
@@ -119,7 +120,7 @@ const Subject = ({subjects, ymalProducts, openAddYmalModal}) => {
                                 </div>
                                 <div style={{margin: '72px 30px 0 0'}}>
                                     <p style={ymalCount}>
-                                        Items currently in queue: {numberOfYmals ? <span style={countStyle}>{numberOfYmals}</span> : null}
+                                        Items currently in queue: {numberOfYmals !== undefined ? <span style={countStyle}>{numberOfYmals}</span> : null}
                                     </p>
                                 </div>
                             </div>
@@ -137,7 +138,7 @@ const Subject = ({subjects, ymalProducts, openAddYmalModal}) => {
                                     </div>
                                 </div>
                                 <div style={ymalListing}>
-                                    <YmalProduct ymalProducts={ymalProducts} />
+                                    <YmalProduct ymalProducts={ymalProductList} />
                                 </div>
                             </div>
                             <ProductFooter />

@@ -41,7 +41,7 @@ class ProductFooter extends Component {
         super(props)
         this.state = {
             isAddYmalModalVisible: false,
-            isFetching: false
+            // isFetching: false
         }
     };
 
@@ -50,6 +50,7 @@ class ProductFooter extends Component {
       }
       closeAddYmalModal = () => {
         this.setState({isAddYmalModalVisible: false})
+        this.fetchSubjects()
       }
 
       fetchSubjects = () => {
@@ -67,20 +68,20 @@ class ProductFooter extends Component {
         });
     }
 
-    fetchYmalProducts = () => {
-        this.setState({
-            isFetching: true
-        });
-        getAllYmalProducts()
-        .then(res => res.json())
-        .then(ymalProducts => {
-            console.log(ymalProducts);
-            this.setState({
-                ymalProducts,
-                isFetching: false
-            })
-        });
-    }
+    // fetchYmalProducts = () => {
+    //     this.setState({
+    //         isFetching: true
+    //     });
+    //     getAllYmalProducts()
+    //     .then(res => res.json())
+    //     .then(ymalProducts => {
+    //         console.log(ymalProducts);
+    //         this.setState({
+    //             ymalProducts,
+    //             isFetching: false
+    //         })
+    //     });
+    // }
 
     render() {
         const {isAddYmalModalVisible} = this.state;
@@ -98,11 +99,8 @@ class ProductFooter extends Component {
                         onCancel={this.closeAddYmalModal}
                         width={900}
                     >
-                        <AddYmalProductForm onSuccess={() => {
-                            this.closeAddYmalModal();
-                            this.fetchSubjects();
-                            this.fetchYmalProducts();
-                        }} 
+                        <AddYmalProductForm 
+                        onSuccess={this.closeAddYmalModal} 
                         />
                     </Modal>
                 </Container>

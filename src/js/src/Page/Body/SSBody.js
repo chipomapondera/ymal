@@ -20,7 +20,7 @@ const SSBody = ({subjects, ymalProducts, isFetching, isAddSubjectModalVisible, i
         <BodyWrapper style={bodyStyling}>
                 <Subject 
                     subjects={subjects} 
-                    ymalProducts={ymalProducts} 
+                    // ymalProducts={ymalProducts} 
                     isFetching={isFetching}
                     isAddYmalModalVisible={isAddYmalModalVisible}
                     openAddSubjectModal={openAddSubjectModal} 

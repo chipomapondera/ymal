@@ -2,6 +2,12 @@ import React from 'react';
 import Container from './Container';
 import SSHeader from './Header/SSHeader';
 import SSBody from './Body/SSBody';
+import Footer from './Body/SSFooter';
+import {Empty} from 'antd';
+
+const emptyLogo = {
+    marginTop: '150px'
+}
 
 const SSPage = ({subjects, ymalProducts, isFetching, isAddSubjectModalVisible, isAddYmalModalVisible, openAddSubjectModal, openAddYmalModal}) => {
     
@@ -11,7 +17,7 @@ const SSPage = ({subjects, ymalProducts, isFetching, isAddSubjectModalVisible, i
                 <SSHeader />
                 <SSBody 
                     subjects={subjects} 
-                    ymalProducts={ymalProducts} 
+                    // ymalProducts={ymalProducts} 
                     isFetching={isFetching}
                     isAddSubjectModalVisible={isAddSubjectModalVisible} 
                     isAddYmalModalVisible={isAddYmalModalVisible}
@@ -25,7 +31,8 @@ const SSPage = ({subjects, ymalProducts, isFetching, isAddSubjectModalVisible, i
     return (
         <Container>
             <SSHeader />
-            <h1>No products found</h1>
+            <Empty style={emptyLogo} description={<h1 style={{fontSize: '22px'}}>No products found</h1>} />
+            <Footer />
         </Container>
     )
 }

@@ -1,6 +1,7 @@
 package com.example.demo.ymalProduct;
 
 import com.example.demo.subject.Subject;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
@@ -78,6 +79,7 @@ public class YmalProduct {
         this.category = category;
     }
 
+    @JsonBackReference
     public Subject getSubject() {
         return subject;
     }

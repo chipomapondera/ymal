@@ -40,6 +40,7 @@ class SSFooter extends Component {
       }
     closeAddSubjectModal = () => {
         this.setState({isAddSubjectModalVisible: false})
+        this.fetchSubjects()
     };
 
     fetchSubjects = () => {
@@ -52,21 +53,6 @@ class SSFooter extends Component {
             console.log('new subjects added' + subjects);
             this.setState({
                 subjects,
-                isFetching: false
-            })
-        });
-    }
-
-    fetchYmalProducts = () => {
-        this.setState({
-            isFetching: true
-        });
-        getAllYmalProducts()
-        .then(res => res.json())
-        .then(ymalProducts => {
-            console.log('new subjects added' + ymalProducts);
-            this.setState({
-                ymalProducts,
                 isFetching: false
             })
         });
@@ -85,11 +71,8 @@ class SSFooter extends Component {
                         onCancel={this.closeAddSubjectModal}
                         width={900}
                     >
-                        <AddSubjectForm onSuccess={() => {
-                            this.closeAddSubjectModal();
-                            this.fetchSubjects();
-                            this.fetchYmalProducts();
-                        }} 
+                        <AddSubjectForm 
+                            onSuccess={this.closeAddSubjectModal} 
                         />
                     </Modal>
                 </Container>

@@ -1,9 +1,12 @@
 package com.example.demo.subject;
 
 import com.example.demo.ymalProduct.YmalProduct;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -14,9 +17,17 @@ public class Subject {
 
     @Id
     private int subject_id;
+
+    @NotBlank
     private String name;
+
+    @NotBlank
     private String designer;
+
+    @NotBlank
     private String colour;
+
+    @NotBlank
     private String category;
 
     public Subject() {
@@ -37,6 +48,7 @@ public class Subject {
     }
 
     @OneToMany(cascade=CascadeType.ALL, mappedBy="subject")
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List<YmalProduct> ymalProductList = new ArrayList<>();
 //    private Set<YmalProduct> ymalProduct;
 
@@ -80,6 +92,7 @@ public class Subject {
         this.category = category;
     }
 
+    @JsonManagedReference
     public List<YmalProduct> getYmalProductList() {
         return ymalProductList;
     }

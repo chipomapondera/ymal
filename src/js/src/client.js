@@ -13,7 +13,7 @@ const checkStatus = (response) => {
     }
 }
 
-export const getAllSubjects = () => fetch('api/subjects');
+export const getAllSubjects = () => fetch('api/subjects').then(checkStatus);;
 export const addNewSubject = (subject) => {
     return fetch('api/subjects', {
         headers: {
@@ -21,7 +21,8 @@ export const addNewSubject = (subject) => {
         },
         method: 'POST',
         body: JSON.stringify(subject)
-    });
+    })
+    .then(checkStatus);
 }
 // export const deleteSubject = (id) => {
 //     return fetch(`api/subjects/${id}`, {
@@ -39,7 +40,7 @@ export const deleteSubject = (id) => {
     .then(res => res)
 }
 
-export const getAllYmalProducts = () => fetch('api/ymalproducts');
+// export const getAllYmalProducts = () => fetch('api/ymalproducts').then(checkStatus);
 export const addNewYmalProduct = (ymalProduct) => {
     return fetch('api/ymalproducts', {
         headers: {
@@ -47,7 +48,8 @@ export const addNewYmalProduct = (ymalProduct) => {
         },
         method: 'POST',
         body: JSON.stringify(ymalProduct)
-    });
+    })
+    .then(console.log('add new Ymal Product'))
 }
 // export const deleteYmalProduct = (id) => {
 //     return fetch(`api/ymalProducts/${id}`, {
