@@ -91,12 +91,18 @@ const ymalListing = {
     margin: '0 auto'
 }
 
+const countStyle = {
+    fontWeight: 'bold',
+    fontSize: '14px'
+}
+
 const Subject = ({subjects, ymalProducts, openAddYmalModal}) => {
     return (
         <SubjectWrapper>
             <div style={wrapperStyling}>
                 {subjects.map((subject, index) => {
                     const {id, name, designer, colour, category} = subject
+                    const numberOfYmals = ymalProducts.length
                     return (
                         <SubjectProduct 
                             id={id} 
@@ -113,7 +119,7 @@ const Subject = ({subjects, ymalProducts, openAddYmalModal}) => {
                                 </div>
                                 <div style={{margin: '72px 30px 0 0'}}>
                                     <p style={ymalCount}>
-                                        Items currently in queue: 
+                                        Items currently in queue: {numberOfYmals ? <span style={countStyle}>{numberOfYmals}</span> : null}
                                     </p>
                                 </div>
                             </div>
