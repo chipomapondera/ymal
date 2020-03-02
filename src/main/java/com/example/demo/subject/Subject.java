@@ -7,9 +7,9 @@ import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name="subject")
@@ -30,6 +30,8 @@ public class Subject {
     @NotBlank
     private String category;
 
+    private Timestamp timestamp;
+
     public Subject() {
         super();
     }
@@ -39,16 +41,19 @@ public class Subject {
             @JsonProperty("name") String name,
             @JsonProperty("designer") String designer,
             @JsonProperty("colour") String colour,
-            @JsonProperty("category") String category) {
+            @JsonProperty("category") String category,
+            @JsonProperty("timestamp") Timestamp timestamp) {
         this.subject_id = subject_id;
         this.name = name;
         this.designer = designer;
         this.colour = colour;
         this.category = category;
+        this.timestamp = timestamp;
     }
 
     @OneToMany(cascade=CascadeType.ALL, mappedBy="subject")
     @LazyCollection(LazyCollectionOption.FALSE)
+    @OrderBy("timestamp")
     private List<YmalProduct> ymalProductList = new ArrayList<>();
 //    private Set<YmalProduct> ymalProduct;
 
@@ -99,6 +104,14 @@ public class Subject {
 
     public void setYmalProductList(List<YmalProduct> ymalProductList) {
         this.ymalProductList = ymalProductList;
+    }
+
+    public Timestamp getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(Timestamp timestamp) {
+        this.timestamp = timestamp;
     }
 
     @Override

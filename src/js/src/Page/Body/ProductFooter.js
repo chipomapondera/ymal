@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import Container from '../Container';
 import {Modal} from 'antd';
 import AddYmalProductForm from '../Forms/AddYmalProductForm';
-import {getAllSubjects, getAllYmalProducts} from '../../client';
+import {getAllSubjects} from '../../client';
+import {errorNotification} from '../Body/Notification';
 
 const bottomBanner = {
     display: 'flex',
@@ -64,24 +65,18 @@ class ProductFooter extends Component {
             this.setState({
                 subjects,
                 isFetching: false
-            })
-        });
+            });
+        })
+        .catch(error => {
+            const message = error.error.message;
+            const description = error.error.error;
+            errorNotification(message, description);
+            console.log(message)
+            this.setState({
+              isFetching: false
+            });
+        })
     }
-
-    // fetchYmalProducts = () => {
-    //     this.setState({
-    //         isFetching: true
-    //     });
-    //     getAllYmalProducts()
-    //     .then(res => res.json())
-    //     .then(ymalProducts => {
-    //         console.log(ymalProducts);
-    //         this.setState({
-    //             ymalProducts,
-    //             isFetching: false
-    //         })
-    //     });
-    // }
 
     render() {
         const {isAddYmalModalVisible} = this.state;
@@ -100,7 +95,15 @@ class ProductFooter extends Component {
                         width={900}
                     >
                         <AddYmalProductForm 
-                        onSuccess={this.closeAddYmalModal} 
+                            onSuccess={() => {
+                                this.closeAddYmalModal();
+                                // this.handleSubmit();
+                            }} 
+                            onFailure={(error) => {
+                                const message = error.error.message;
+                                const description = error.error.httpStatus
+                                errorNotification(message, description);
+                            }}
                         />
                     </Modal>
                 </Container>

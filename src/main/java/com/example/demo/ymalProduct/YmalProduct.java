@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 
 @Entity
 @Table(name="ymal_product")
@@ -17,6 +18,7 @@ public class YmalProduct {
     private String designer;
     private String colour;
     private String category;
+    private Timestamp timestamp;
 
     @ManyToOne
     @JoinColumn(name="subject_id", nullable=false)
@@ -35,12 +37,14 @@ public class YmalProduct {
             @JsonProperty("name") String name,
             @JsonProperty("designer") String designer,
             @JsonProperty("colour") String colour,
-            @JsonProperty("category") String category) {
+            @JsonProperty("category") String category,
+            @JsonProperty("timestamp") Timestamp timestamp) {
         this.ymal_id = ymal_id;
         this.name = name;
         this.designer = designer;
         this.colour = colour;
         this.category = category;
+        this.timestamp = timestamp;
     }
 
     public void setId(int ymal_id) {
@@ -86,6 +90,14 @@ public class YmalProduct {
 
     public void setSubject(Subject subject) {
         this.subject = subject;
+    }
+
+    public Timestamp getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(Timestamp timestamp) {
+        this.timestamp = timestamp;
     }
 
     @Override

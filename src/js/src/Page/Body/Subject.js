@@ -1,8 +1,8 @@
 import React from 'react';
-import YmalProduct from './YmalProduct';
 import ProductFooter from './ProductFooter';
 import {deleteSubject} from '../../client';
-import {Popconfirm} from 'antd';
+import Carousel from '../Body/Carousel/Carousel';
+// import {Popconfirm} from 'antd';
 
 const SubjectWrapper = (props) => {
     return (
@@ -87,16 +87,12 @@ const ymalCount = {
     margin: 0
 }
 
-const ymalListing = {
-    margin: '0 auto'
-}
-
 const countStyle = {
     fontWeight: 'bold',
     fontSize: '14px'
 }
 
-const Subject = ({subjects, ymalProducts, openAddYmalModal}) => {
+const Subject = ({subjects}) => {
     return (
         <SubjectWrapper>
             <div style={wrapperStyling}>
@@ -120,7 +116,7 @@ const Subject = ({subjects, ymalProducts, openAddYmalModal}) => {
                                 </div>
                                 <div style={{margin: '72px 30px 0 0'}}>
                                     <p style={ymalCount}>
-                                        Items currently in queue: {numberOfYmals !== undefined ? <span style={countStyle}>{numberOfYmals}</span> : null}
+                                        Items currently in queue: {numberOfYmals !== undefined ? <span style={countStyle}>{numberOfYmals} / 16</span> : null}
                                     </p>
                                 </div>
                             </div>
@@ -137,8 +133,8 @@ const Subject = ({subjects, ymalProducts, openAddYmalModal}) => {
                                         <button style={removeButtonStyling} onClick={()=>deleteSubjectProduct(id)}>Remove</button>
                                     </div>
                                 </div>
-                                <div style={ymalListing}>
-                                    <YmalProduct ymalProducts={ymalProductList} />
+                                <div>
+                                    <Carousel ymalProducts={ymalProductList} />
                                 </div>
                             </div>
                             <ProductFooter />

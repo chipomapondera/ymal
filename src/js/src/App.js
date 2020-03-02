@@ -2,7 +2,7 @@ import React, { Component} from 'react';
 import Container from './Page/Container';
 import SSPage from './Page/SSPage';
 import './App.css';
-import {getAllSubjects, getAllYmalProducts} from './client';
+import {getAllSubjects} from './client';
 import {errorNotification} from './Page/Body/Notification';
 import {
   Spin,
@@ -99,7 +99,7 @@ class App extends Component {
 
   render() {
 
-    const {subjects, ymalProducts, isFetching, isAddSubjectModalVisible, isAddYmalModalVisible} = this.state;
+    const {subjects, isFetching, isAddSubjectModalVisible, isAddYmalModalVisible} = this.state;
 
     if(isFetching) {
       return(

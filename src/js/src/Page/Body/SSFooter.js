@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import Container from '../Container';
-import {Modal, Input, Button} from 'antd';
+import {Modal} from 'antd';
 import AddSubjectForm from '../Forms/AddSubjectForm';
-import {getAllSubjects, getAllYmalProducts} from '../../client';
+import {getAllSubjects} from '../../client';
+import {errorNotification} from '../Body/Notification';
 
 const footerStyling = {
     display: 'flex', 
@@ -30,9 +31,10 @@ class SSFooter extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            subjects: [],
             isAddSubjectModalVisible: false,
             isFetching: false
-        }
+        };
     };
 
     openAddSubjectModal = () => {
@@ -40,13 +42,13 @@ class SSFooter extends Component {
       }
     closeAddSubjectModal = () => {
         this.setState({isAddSubjectModalVisible: false})
-        this.fetchSubjects()
+        this.handleSubmit()
     };
 
-    fetchSubjects = () => {
+    handleSubmit = () => {
         this.setState({
             isFetching: true
-        });
+          });
         getAllSubjects()
         .then(res => res.json())
         .then(subjects => {
@@ -54,8 +56,17 @@ class SSFooter extends Component {
             this.setState({
                 subjects,
                 isFetching: false
-            })
-        });
+            });
+        })
+        .catch(error => {
+            const message = error.error.message;
+            const description = error.error.error;
+            errorNotification(message, description);
+            console.log(message)
+            this.setState({
+              isFetching: false
+            });
+        })
     }
 
     render() {
@@ -72,7 +83,15 @@ class SSFooter extends Component {
                         width={900}
                     >
                         <AddSubjectForm 
-                            onSuccess={this.closeAddSubjectModal} 
+                            onSuccess={() => {
+                                this.closeAddSubjectModal();
+                                this.handleSubmit();
+                            }} 
+                            onFailure={(error) => {
+                                const message = error.error.message;
+                                const description = error.error.httpStatus
+                                errorNotification(message, description);
+                            }}
                         />
                     </Modal>
                 </Container>

@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
+import java.sql.Timestamp;
 import java.util.List;
 
 @Repository
@@ -24,6 +25,7 @@ public class SubjectDataAccessService {
                 " designer, " +
                 " colour, " +
                 " category " +
+                " timestamp " +
                 "FROM subject";
         return jdbcTemplate.query(sql, mapSubjectFromDb());
     }
@@ -35,12 +37,14 @@ public class SubjectDataAccessService {
             String designer = resultSet.getString("designer");
             String colour = resultSet.getString("colour");
             String category = resultSet.getString("category");
+            Timestamp timestamp = resultSet.getTimestamp("timestamp");
             return new Subject(
                     subject_id,
                     name,
                     designer,
                     colour,
-                    category
+                    category,
+                    timestamp
             );
         };
     }

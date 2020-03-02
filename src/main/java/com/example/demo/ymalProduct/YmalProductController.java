@@ -2,6 +2,7 @@ package com.example.demo.ymalProduct;
 
 import com.example.demo.exception.ApiRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -24,7 +25,7 @@ public class YmalProductController {
     @GetMapping(path = "/ymalproducts")
     public List<YmalProduct> getAllYmalProducts() {
 //        throw new ApiRequestException("Oops cannot get all ymalProducts with custom exception");
-        return ymalProductRepository.findAll();
+        return ymalProductRepository.findAll(Sort.by(Sort.Direction.ASC, "designer"));
     }
 
 //    @CrossOrigin(origins = "http://localhost:3000")

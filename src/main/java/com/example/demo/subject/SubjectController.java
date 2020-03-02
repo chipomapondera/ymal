@@ -2,6 +2,7 @@ package com.example.demo.subject;
 
 import com.example.demo.exception.ApiRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -24,7 +25,7 @@ public class SubjectController {
     @GetMapping(path = "/subjects")
     public List<Subject> getAllSubjects() {
 //        throw new ApiRequestException("Oops cannot get all subjects with custom exception");
-        return subjectRepository.findAll();
+        return subjectRepository.findAll(Sort.by(Sort.Direction.DESC, "timestamp"));
     }
 
 //    @CrossOrigin(origins = "http://localhost:3000")

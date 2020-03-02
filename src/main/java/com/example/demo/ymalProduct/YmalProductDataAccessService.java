@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
+
+import java.sql.Timestamp;
 import java.util.List;
 
 @Repository
@@ -24,6 +26,7 @@ public class YmalProductDataAccessService {
                 " designer, " +
                 " colour, " +
                 " category " +
+                " timestamp " +
                 "FROM ymal_product";
         return jdbcTemplate.query(sql, mapYmalProductFromDb());
     }
@@ -35,12 +38,14 @@ public class YmalProductDataAccessService {
             String designer = resultSet.getString("designer");
             String colour = resultSet.getString("colour");
             String category =  resultSet.getString("category");
+            Timestamp timestamp = resultSet.getTimestamp("timestamp");
             return new YmalProduct(
                     ymal_id,
                     name,
                     designer,
                     colour,
-                    category
+                    category,
+                    timestamp
             );
         };
     }

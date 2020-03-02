@@ -58,6 +58,11 @@ class AddSubjectForm extends Component {
                     onSubmit={(subject, { setSubmitting }) => {
                         addNewSubject(subject).then(() => {
                             this.props.onSuccess();
+                        })
+                        .catch(error => {
+                            this.props.onFailure(error);
+                        })
+                        .finally(() => {
                             setSubmitting(false);
                         })
                     }}

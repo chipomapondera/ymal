@@ -61,8 +61,13 @@ class AddYmalProductForm extends Component {
                     }}
                     onSubmit={(ymalProduct, { setSubmitting }) => {
                         addNewYmalProduct(ymalProduct).then(() => {
-                                this.props.onSuccess();
-                                setSubmitting(false);
+                            this.props.onSuccess();
+                        })
+                        .catch(error => {
+                            this.props.onFailure(error);
+                        })
+                        .finally(() => {
+                            setSubmitting(false);
                         })
                     }}
                     >
