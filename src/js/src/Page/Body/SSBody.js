@@ -21,7 +21,6 @@ const deleteSubjectProduct = (id) => {
 }
 
 const SSBody = ({subjects, ymalProducts, isFetching, isAddSubjectModalVisible, isAddYmalModalVisible, openAddSubjectModal, openAddYmalModal}) => {
-    const {id} = subjects
     return (
         <BodyWrapper style={bodyStyling}>
                 <Subject 
@@ -30,7 +29,7 @@ const SSBody = ({subjects, ymalProducts, isFetching, isAddSubjectModalVisible, i
                     isFetching={isFetching}
                     isAddYmalModalVisible={isAddYmalModalVisible}
                     openAddSubjectModal={openAddSubjectModal} 
-                    onClick={()=>deleteSubjectProduct(id)}
+                    onClick={()=>deleteSubjectProduct()}
                 />
                 <SSFooter 
                     isFetching={isFetching}
