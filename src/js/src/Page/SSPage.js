@@ -10,7 +10,6 @@ const emptyLogo = {
 }
 
 const SSPage = ({subjects, ymalProducts, isFetching, isAddSubjectModalVisible, isAddYmalModalVisible, openAddSubjectModal, openAddYmalModal}) => {
-    
     if(subjects && subjects.length) {
         return (
             <Container>

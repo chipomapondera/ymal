@@ -6,8 +6,8 @@ const arrowWrapper = {
     justifyContent: "center",
     alignItems: "center",
     margin: "0 auto",
-    margin: "0px 15px 0px 0px",
-    backgroundColor: "red"
+    margin: "0px 15px 0px 0px"
+    // backgroundColor: "red"
 }
 
 const arrowStyling = {
@@ -15,15 +15,14 @@ const arrowStyling = {
     width: "2em"
 }
 
-const LeftArrow = () => {
+const LeftArrow = ({onclick}) => {
         return (
             <div 
             style={arrowWrapper}
-                // onClick={this.props.goBack}
+            onClick={onclick}
             >
                 <FaChevronLeft 
                 style={arrowStyling}
-                // aria-hidden='true'
                 />
             </div>
         )

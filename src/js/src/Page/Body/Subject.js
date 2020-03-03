@@ -1,6 +1,6 @@
 import React from 'react';
 import ProductFooter from './ProductFooter';
-import {deleteSubject} from '../../client';
+// import {deleteSubject} from '../../client';
 import Carousel from '../Body/Carousel/Carousel';
 // import {Popconfirm} from 'antd';
 
@@ -20,9 +20,9 @@ const SubjectProduct = (props) => {
     )
 }
 
-const deleteSubjectProduct = (id) => {
-    deleteSubject(id)
-}
+// const deleteSubjectProduct = (id) => {
+//     deleteSubject(id)
+// }
 
 const wrapperStyling = {
     paddingBottom: '70px',
@@ -92,7 +92,7 @@ const countStyle = {
     fontSize: '14px'
 }
 
-const Subject = ({subjects}) => {
+const Subject = ({subjects, onClick}) => {
     return (
         <SubjectWrapper>
             <div style={wrapperStyling}>
@@ -130,7 +130,7 @@ const Subject = ({subjects}) => {
                                         <p style={paragraphStyle}>{category}</p>
                                     </div>
                                     <div>
-                                        <button style={removeButtonStyling} onClick={()=>deleteSubjectProduct(id)}>Remove</button>
+                                        <button style={removeButtonStyling} onClick={onClick}>Remove</button>
                                     </div>
                                 </div>
                                 <div>

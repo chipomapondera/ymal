@@ -69,7 +69,7 @@ const deleteProduct = (id) => {
 }
 
 
-const CarouselGrid = ({ymalProducts}) => {    
+const CarouselGrid = ({ymalProducts, activeIndex}) => {    
         console.log('this is the list' + ymalProducts)
         return (
             <div style={gridStyling}> 
@@ -78,8 +78,11 @@ const CarouselGrid = ({ymalProducts}) => {
                 {ymalProducts.map((ymalProduct, index) => {
                     const {id, name, designer, colour, category} = ymalProduct
                     return (
-                        <YmalItem key={ymalProduct.id} id={id} name={name} designer={designer} colour={colour} category={category}>
-                            <div style={ymalProductDivStyle}>
+                        <YmalItem key={index} id={id} name={name} designer={designer} colour={colour} category={category}>
+                            <div 
+                                className={index === activeIndex ? 'active' : 'inactive'} 
+                                style={ymalProductDivStyle}
+                            >
                                 <div style={textWrapper}>
                                     <p style={paragraphStyle}>{id}</p>
                                     <p style={paragraphStyle}>{name}</p>

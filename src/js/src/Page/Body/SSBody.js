@@ -1,6 +1,7 @@
 import React from 'react';
 import Subject from './Subject';
 import SSFooter from './SSFooter';
+import {deleteSubject} from '../../client';
 
 const BodyWrapper = (props) => {
     return (
@@ -15,7 +16,12 @@ const bodyStyling = {
     flexDirection: 'row'
 }
 
+const deleteSubjectProduct = (id) => {
+    deleteSubject(id)
+}
+
 const SSBody = ({subjects, ymalProducts, isFetching, isAddSubjectModalVisible, isAddYmalModalVisible, openAddSubjectModal, openAddYmalModal}) => {
+    const {id} = subjects
     return (
         <BodyWrapper style={bodyStyling}>
                 <Subject 
@@ -24,6 +30,7 @@ const SSBody = ({subjects, ymalProducts, isFetching, isAddSubjectModalVisible, i
                     isFetching={isFetching}
                     isAddYmalModalVisible={isAddYmalModalVisible}
                     openAddSubjectModal={openAddSubjectModal} 
+                    onClick={()=>deleteSubjectProduct(id)}
                 />
                 <SSFooter 
                     isFetching={isFetching}

@@ -5,8 +5,8 @@ const arrowWrapper = {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    margin: "0px 0px 0px 15px",
-    backgroundColor: "red"
+    margin: "0px 0px 0px 15px"
+    // backgroundColor: "red"
 }
 
 const arrowStyling = {
@@ -14,15 +14,14 @@ const arrowStyling = {
     width: "2em"
 }
 
-const RightArrow = () => {
+const RightArrow = ({onclick}) => {
     return (
         <div 
         style={arrowWrapper}
-        // onClick={this.props.goBack}
+        onClick={onclick}
         >
             <FaChevronRight 
             style={arrowStyling}
-            // aria-hidden='true'
             />
         </div>
     )
