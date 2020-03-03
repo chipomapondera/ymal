@@ -39,7 +39,8 @@ class SSFooter extends Component {
 
     openAddSubjectModal = () => {
         this.setState({isAddSubjectModalVisible: true})
-      }
+    };
+
     closeAddSubjectModal = () => {
         this.setState({isAddSubjectModalVisible: false})
         this.handleSubmit()
@@ -85,7 +86,7 @@ class SSFooter extends Component {
                         <AddSubjectForm 
                             onSuccess={() => {
                                 this.closeAddSubjectModal();
-                                this.handleSubmit();
+                                // this.handleSubmit();
                             }} 
                             onFailure={(error) => {
                                 const message = error.error.message;

@@ -51,18 +51,27 @@ class Carousel extends Component {
         })
     }
 
+    handleLeftClick = () => {
+        this.goBack();
+    }
+
+    handleRightClick = () => {
+        this.goForward();
+    }
+
     render() {
+        const {ymalProducts, activeIndex} = this.props;
         return (
             <div style={carouselStyling}> 
                 <LeftArrow 
-                    onclick={() => this.goBack()}
+                    onclick={this.handleLeftClick}
                 />
                 <CarouselGrid 
-                    ymalProducts={this.props.ymalProducts} 
-                    activeIndex={this.state.activeIndex}
+                    ymalProducts={ymalProducts} 
+                    activeIndex={activeIndex}
                 />
                 <RightArrow 
-                    onclick={() => this.goForward()}
+                    onclick={this.handleRightClick}
                 />
             </div>
         )

@@ -5,7 +5,6 @@ const arrowWrapper = {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    margin: "0 auto",
     margin: "0px 15px 0px 0px"
     // backgroundColor: "red"
 }

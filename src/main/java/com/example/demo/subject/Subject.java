@@ -51,7 +51,7 @@ public class Subject {
         this.timestamp = timestamp;
     }
 
-    @OneToMany(cascade=CascadeType.ALL, mappedBy="subject")
+    @OneToMany(orphanRemoval = true, cascade=CascadeType.ALL, mappedBy="subject")
     @LazyCollection(LazyCollectionOption.FALSE)
     @OrderBy("timestamp")
     private List<YmalProduct> ymalProductList = new ArrayList<>();

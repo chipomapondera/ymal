@@ -1,28 +1,46 @@
 import React from 'react';
 import Container from './Container';
 import SSHeader from './Header/SSHeader';
-import SSBody from './Body/SSBody';
-import Footer from './Body/SSFooter';
+import Subjects from '../Page/Body/Subject/Subjects';
+import SSFooter from './Body/SSFooter';
 import {Empty} from 'antd';
 
 const emptyLogo = {
     marginTop: '150px'
 }
 
-const SSPage = ({subjects, ymalProducts, isFetching, isAddSubjectModalVisible, isAddYmalModalVisible, openAddSubjectModal, openAddYmalModal}) => {
+const BodyWrapper = (props) => {
+    return (
+        <div>
+            {props.children}
+        </div>
+    )
+}
+
+const bodyStyling = {
+    display: 'flex',
+    flexDirection: 'row'
+}
+
+const SSPage = ({subjects, isFetching, isAddSubjectModalVisible, isAddYmalModalVisible, openAddSubjectModal, openAddYmalModal}) => {
     if(subjects && subjects.length) {
         return (
             <Container>
                 <SSHeader />
-                <SSBody 
-                    subjects={subjects} 
-                    // ymalProducts={ymalProducts} 
-                    isFetching={isFetching}
-                    isAddSubjectModalVisible={isAddSubjectModalVisible} 
-                    isAddYmalModalVisible={isAddYmalModalVisible}
-                    openAddSubjectModal={openAddSubjectModal} 
-                    openAddYmalModal={openAddYmalModal} 
-                />
+                <BodyWrapper style={bodyStyling}> 
+                    <Subjects 
+                        subjects={subjects} 
+                        // ymalProducts={ymalProducts} 
+                        isFetching={isFetching}
+                        isAddYmalModalVisible={isAddYmalModalVisible}
+                        openAddSubjectModal={openAddSubjectModal} 
+                    />
+                    <SSFooter 
+                        isFetching={isFetching}
+                        isAddSubjectModalVisible={isAddSubjectModalVisible} 
+                        openAddYmalModal={openAddYmalModal} 
+                    />
+                </BodyWrapper>
             </Container>
         )
     }
@@ -31,7 +49,7 @@ const SSPage = ({subjects, ymalProducts, isFetching, isAddSubjectModalVisible, i
         <Container>
             <SSHeader />
             <Empty style={emptyLogo} description={<h1 style={{fontSize: '22px'}}>No products found</h1>} />
-            <Footer />
+            <SSFooter />
         </Container>
     )
 }

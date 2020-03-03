@@ -1,7 +1,8 @@
 import React from 'react';
-import ProductFooter from './ProductFooter';
-// import {deleteSubject} from '../../client';
-import Carousel from '../Body/Carousel/Carousel';
+import SubjectItem from './SubjectItem';
+import ProductFooter from '../ProductFooter';
+import {deleteSubject} from '../../../client';
+import Carousel from '../Carousel/Carousel';
 // import {Popconfirm} from 'antd';
 
 const SubjectWrapper = (props) => {
@@ -20,10 +21,6 @@ const SubjectProduct = (props) => {
     )
 }
 
-// const deleteSubjectProduct = (id) => {
-//     deleteSubject(id)
-// }
-
 const wrapperStyling = {
     paddingBottom: '70px',
     display: 'flex',
@@ -34,37 +31,6 @@ const wrapperStyling = {
 const productWrapper ={
     display: 'flex',
     flexDirection: 'row'
-}
-
-const subjectDivStyle = {
-    width: '120px', 
-    border: '1px solid black',
-    textAlign: 'center',
-    display: 'flex',
-    flexDirection: 'column',
-    margin: '30px 30px'
-}
-
-const removeButtonStyling = {
-    width: '70px', 
-    height: '15px', 
-    backgroundColor: 'white',
-    border: '1px solid white', 
-    fontSize: '10px', 
-    textDecoration: 'underline',
-    color: 'black',
-    marginBottom: '10px'
-}
-
-const paragraphStyle = {
-    margin: '0', 
-    fontSize: '11px'
-}
-
-const textWrapper = {
-    display: 'block', 
-    textAlign: 'center', 
-    padding: '10px 10px 5px'
 }
 
 const listingInfo = {
@@ -92,7 +58,12 @@ const countStyle = {
     fontSize: '14px'
 }
 
-const Subject = ({subjects, onClick}) => {
+const Subjects = ({subjects}) => {
+
+    const deleteSubjectProduct = (id) => {
+        deleteSubject(id)
+    }
+
     return (
         <SubjectWrapper>
             <div style={wrapperStyling}>
@@ -121,18 +92,11 @@ const Subject = ({subjects, onClick}) => {
                                 </div>
                             </div>
                             <div style={productWrapper}>
-                                <div key={subject.id} style={subjectDivStyle}>
-                                    <div style={textWrapper}>
-                                        <p style={paragraphStyle}>{id}</p>
-                                        <p style={paragraphStyle}>{name}</p>
-                                        <p style={paragraphStyle}>{designer}</p>
-                                        <p style={paragraphStyle}>{colour}</p>
-                                        <p style={paragraphStyle}>{category}</p>
-                                    </div>
-                                    <div>
-                                        <button style={removeButtonStyling} onClick={onClick}>Remove</button>
-                                    </div>
-                                </div>
+                                <SubjectItem 
+                                subject={subject} 
+                                onClick={()=>deleteSubjectProduct(id)}
+                                id={id}
+                                />
                                 <div>
                                     <Carousel ymalProducts={ymalProductList} />
                                 </div>
@@ -145,4 +109,4 @@ const Subject = ({subjects, onClick}) => {
         </SubjectWrapper>
     )
 }
-export default Subject;
+export default Subjects;

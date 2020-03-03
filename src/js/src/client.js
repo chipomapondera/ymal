@@ -63,7 +63,7 @@ export const deleteYmalProduct = (id) => {
         method: 'DELETE',
         mode: 'CORS'
     })
-    .then(console.log('remove YMAL button clicked'))
+    .then(res => res)
 }
 
 
