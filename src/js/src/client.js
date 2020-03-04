@@ -59,11 +59,9 @@ export const addNewYmalProduct = (ymalProduct) => {
 // }
 
 export const deleteYmalProduct = (id) => {
-    return fetch(`api/ymalProducts/${id}`, {
+    return fetch(`api/ymalproducts/${id}`, {
         method: 'DELETE',
         mode: 'CORS'
     })
     .then(res => res)
 }
-
-

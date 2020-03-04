@@ -20,7 +20,7 @@ public class YmalProduct {
     private String category;
     private Timestamp timestamp;
 
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.DETACH, fetch=FetchType.LAZY)
     @JoinColumn(name="subject_id", nullable=false)
     private Subject subject;
 

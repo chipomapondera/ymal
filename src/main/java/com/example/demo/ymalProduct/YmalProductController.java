@@ -36,8 +36,8 @@ public class YmalProductController {
     }
 
 //    @CrossOrigin(origins = "http://localhost:3000")
-    @DeleteMapping(path = "/ymalproducts/{ymal_id}")
-    public void deleteYmalProduct(@PathVariable("ymal_id") int ymal_id) {
-        ymalProductRepository.deleteById(ymal_id);
-    }
+//    @DeleteMapping(path = "/ymalproducts/{ymal_id}")
+//    public void deleteYmalProduct(@PathVariable("ymal_id") int ymal_id) {
+//        ymalProductRepository.deleteById(ymal_id);
+//    }
 }
