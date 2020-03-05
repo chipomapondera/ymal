@@ -3,6 +3,7 @@ package com.example.demo.ymalProduct;
 import com.example.demo.subject.Subject;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -18,15 +19,14 @@ public class YmalProduct {
     private String designer;
     private String colour;
     private String category;
+
+    @CreationTimestamp
+    @Column(name="timestamp", nullable = false, insertable = false, columnDefinition="TIMESTAMP default CURRENT_TIMESTAMP")
     private Timestamp timestamp;
 
     @ManyToOne(cascade=CascadeType.DETACH, fetch=FetchType.LAZY)
     @JoinColumn(name="subject_id", nullable=false)
     private Subject subject;
-
-    public int getId() {
-        return ymal_id;
-    }
 
     public YmalProduct() {
         super();
@@ -45,6 +45,10 @@ public class YmalProduct {
         this.colour = colour;
         this.category = category;
         this.timestamp = timestamp;
+    }
+
+    public int getId() {
+        return ymal_id;
     }
 
     public void setId(int ymal_id) {
@@ -108,6 +112,7 @@ public class YmalProduct {
                 ", designer='" + designer + '\'' +
                 ", colour='" + colour + '\'' +
                 ", category='" + category + '\'' +
+//                ", timestamp='" + timestamp + '\'' +
                 '}';
     }
 }

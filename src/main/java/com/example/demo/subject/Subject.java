@@ -3,6 +3,7 @@ package com.example.demo.subject;
 import com.example.demo.ymalProduct.YmalProduct;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 import javax.persistence.*;
@@ -30,6 +31,8 @@ public class Subject {
     @NotBlank
     private String category;
 
+    @CreationTimestamp
+    @Column(name="timestamp", nullable = false, insertable = false, columnDefinition="TIMESTAMP default CURRENT_TIMESTAMP")
     private Timestamp timestamp;
 
     public Subject() {
@@ -122,6 +125,7 @@ public class Subject {
                 ", designer='" + designer + '\'' +
                 ", colour='" + colour + '\'' +
                 ", category='" + category + '\'' +
+//                ", timestamp='" + timestamp + '\'' +
                 '}';
     }
 }
