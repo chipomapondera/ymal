@@ -1,7 +1,7 @@
 import React from 'react';
 import Container from './Container';
 import SSHeader from './Header/SSHeader';
-import Subjects from '../Page/Body/Subject/Subjects';
+import Subjects from '../Page/Body/Subjects/Subjects';
 import SSFooter from './Body/SSFooter';
 import {Empty} from 'antd';
 

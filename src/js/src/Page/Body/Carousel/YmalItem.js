@@ -1,12 +1,12 @@
 import React from 'react';
 
 const ymalProductDivStyle = {
-    width: '120px', 
+    minWidth: '120px', 
     border: '1px solid black',
     textAlign: 'center',
     display: 'flex',
     flexDirection: 'column',
-    margin: "30px 10px 30px 5px"
+    margin: "30px 7px 30px 5px"
 }
 
 const paragraphStyle = {
@@ -32,7 +32,7 @@ const removeButtonStyling = {
     marginBottom: '10px'
 }
 
-const YmalItem = ({ymalProduct, onClick, activeIndex}) => {
+const YmalItem = ({ymalProduct, onClick}) => {
     const {id, name, designer, colour, category} = ymalProduct
     return (
         <div

@@ -1,0 +1,17 @@
+.wrapperStyling {
+    display: flex;
+    flex-direction: row;
+    width: 1080px;
+    justify-content: flex-start;
+    margin-left: 5px;
+    transform: translateX(130px);
+
+    &.is-reversing {
+        transform: translateX(-130px);
+    }
+
+    &.is-set {
+        transform: none;
+        transition: 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+}

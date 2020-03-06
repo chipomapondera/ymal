@@ -5,7 +5,8 @@ const arrowWrapper = {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    margin: "0px 0px 0px 15px"
+    margin: "0px 0px 0px 15px",
+    cursor: 'pointer'
     // backgroundColor: "red"
 }
 
@@ -14,11 +15,11 @@ const arrowStyling = {
     width: "2em"
 }
 
-const RightArrow = ({onclick}) => {
+const RightArrow = ({handleClick}) => {
     return (
         <div 
         style={arrowWrapper}
-        onClick={onclick}
+        onClick={handleClick}
         >
             <FaChevronRight 
             style={arrowStyling}

@@ -1,7 +1,7 @@
 import React from 'react';
 
 const subjectDivStyle = {
-    width: '120px', 
+    minWidth: '120px', 
     border: '1px solid black',
     textAlign: 'center',
     display: 'flex',

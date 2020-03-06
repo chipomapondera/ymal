@@ -1,6 +1,7 @@
 import React from 'react';
 import YmalItem from '../Carousel/YmalItem';
 import {deleteYmalProduct} from '../../../client';
+import './CarouselStyles.scss';
 
 const YmalProductWrapper = (props) => {
     return (
@@ -18,47 +19,34 @@ const YmalProduct = (props) => {
     )
 }
 
-const gridStyling = {
-    position: 'relative',
-    // height: '100vh',
-    // width: '100vw',
-    margin: '0 auto',
-    overflow: 'hidden'
-}
-
-const wrapperStyling = {
-    display: 'flex',
-    flexDirection: 'row',
-    width: '1100px',
-    justifyContent: 'flex-start'
-}
-
-const CarouselGrid = ({ymalProducts, activeIndex}) => {    
+const CarouselGrid = ({ymalProducts, isSet, isReversing, getOrder}) => {   
 
     const deleteProduct = (id) => { 
         deleteYmalProduct(id);
     }
-    console.log('this is the list' + ymalProducts)
+
+    const classSet = isSet ? 'is-set' : ''
+    const classReversing = isReversing ? 'is-reversing' : ''
+
     return (
-        <div style={gridStyling}> 
         <YmalProductWrapper>
-            <div style={wrapperStyling}>
+            <div className={`wrapperStyling ${classSet} ${classReversing}`}>
                 {ymalProducts.map((ymalProduct, index) => {
                     const {id} = ymalProduct
                     return (
                         <YmalProduct> 
                             <YmalItem 
                             ymalProduct={ymalProduct}
+                            key={ymalProduct}
+                            style={{order: getOrder(index)}}
                             onClick={()=>deleteProduct(id)}
                             id={id}
-                            activeIndex={activeIndex}
                             />
                         </YmalProduct>
                     )} 
                 )}
             </div>
         </YmalProductWrapper>
-    </div>
-)}
+    )}
 
 export default CarouselGrid;

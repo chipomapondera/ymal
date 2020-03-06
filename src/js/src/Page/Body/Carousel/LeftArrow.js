@@ -2,10 +2,11 @@ import React from 'react';
 import { FaChevronLeft } from 'react-icons/fa';
 
 const arrowWrapper = {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    margin: "0px 15px 0px 0px"
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    margin: '0px 15px 0px 0px',
+    cursor: 'pointer'
     // backgroundColor: "red"
 }
 
@@ -14,11 +15,11 @@ const arrowStyling = {
     width: "2em"
 }
 
-const LeftArrow = ({onclick}) => {
+const LeftArrow = ({handleClick}) => {
         return (
             <div 
             style={arrowWrapper}
-            onClick={onclick}
+            onClick={handleClick}
             >
                 <FaChevronLeft 
                 style={arrowStyling}
