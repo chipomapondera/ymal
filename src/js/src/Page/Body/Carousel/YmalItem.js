@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useRef} from 'react';
+import {useDrag, useDrop} from 'react-dnd';
 
 const ymalProductDivStyle = {
     minWidth: '120px', 
@@ -6,7 +7,9 @@ const ymalProductDivStyle = {
     textAlign: 'center',
     display: 'flex',
     flexDirection: 'column',
-    margin: "30px 7px 30px 5px"
+    margin: "30px 7px 30px 5px",
+    backgroundColor: 'white',
+    opacity: 1
 }
 
 const paragraphStyle = {
@@ -32,12 +35,44 @@ const removeButtonStyling = {
     marginBottom: '10px'
 }
 
-const YmalItem = ({ymalProduct, onClick}) => {
+const type = "YmalProduct";
+
+const YmalItem = ({ymalProduct, index, moveYmalProduct, onClick}) => {
+
+    // console.log('this is the index: ' + index)
     const {id, name, designer, colour, category} = ymalProduct
+    const ref = useRef(null);
+    const [, drop] = useDrop({
+        accept: type,
+        hover(ymalProduct) {
+            if (!ref.current) {
+                return;
+            }
+
+            const dragIndex = ymalProduct.index;
+            const hoverIndex = index;
+            if (dragIndex === hoverIndex) {
+                return;
+            }
+            moveYmalProduct(dragIndex, hoverIndex);
+            ymalProduct.index = hoverIndex
+        }
+    });
+    const [{isDragging}, drag] = useDrag({
+        item: {type, id: ymalProduct.id, index},
+        collect: monitor => ({
+            isDragging: monitor.isDragging()
+        })
+    });
+
+    drag(drop(ref));
+
     return (
         <div
         // className={index === activeIndex ? 'active' : 'inactive'}
+        ref={ref}
         style={ymalProductDivStyle}
+        // style={{ opacity: isDragging ? 0 : 1 }}
         >
             <div style={textWrapper}>
                 <p style={paragraphStyle}>{id}</p>

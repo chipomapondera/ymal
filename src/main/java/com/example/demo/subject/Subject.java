@@ -6,6 +6,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.sql.Timestamp;
@@ -32,8 +34,12 @@ public class Subject {
     private String category;
 
     @CreationTimestamp
-    @Column(name="timestamp", nullable = false, insertable = false, columnDefinition="TIMESTAMP default CURRENT_TIMESTAMP")
+    @Column(name="timestamp", nullable = false, insertable = false, updatable=false, columnDefinition="TIMESTAMP default CURRENT_TIMESTAMP")
     private Timestamp timestamp;
+
+    @UpdateTimestamp
+    @Column(name="time_updated", insertable = false, columnDefinition="TIMESTAMP default CURRENT_TIMESTAMP")
+    private Timestamp timeUpdated;
 
     public Subject() {
         super();
@@ -56,9 +62,8 @@ public class Subject {
 
     @OneToMany(mappedBy="subject", orphanRemoval=true, cascade=CascadeType.ALL)
     @LazyCollection(LazyCollectionOption.FALSE)
-    @OrderBy("timestamp")
+    @OrderBy("rank asc")
     private List<YmalProduct> ymalProductList = new ArrayList<>();
-//    private Set<YmalProduct> ymalProduct;
 
     public int getId() {
         return subject_id;
@@ -115,6 +120,14 @@ public class Subject {
 
     public void setTimestamp(Timestamp timestamp) {
         this.timestamp = timestamp;
+    }
+
+    public Timestamp getTimeUpdated() {
+        return timeUpdated;
+    }
+
+    public void setTimeUpdated(Timestamp timeUpdated) {
+        this.timeUpdated = timeUpdated;
     }
 
     @Override

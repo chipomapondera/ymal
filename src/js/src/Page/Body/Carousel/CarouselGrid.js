@@ -2,6 +2,8 @@ import React from 'react';
 import YmalItem from '../Carousel/YmalItem';
 import {deleteYmalProduct} from '../../../client';
 import './CarouselStyles.scss';
+import {DndProvider} from 'react-dnd';
+import HTML5Backend from 'react-dnd-html5-backend';
 
 const YmalProductWrapper = (props) => {
     return (
@@ -19,7 +21,9 @@ const YmalProduct = (props) => {
     )
 }
 
-const CarouselGrid = ({ymalProducts, isSet, isReversing, getOrder}) => {   
+const CarouselGrid = ({ymalProducts, isSet, isReversing, getOrder, moveYmalProduct}) => { 
+    
+    console.log('this is the ymalProducts array ' + ymalProducts)
 
     const deleteProduct = (id) => { 
         deleteYmalProduct(id);
@@ -29,24 +33,28 @@ const CarouselGrid = ({ymalProducts, isSet, isReversing, getOrder}) => {
     const classReversing = isReversing ? 'is-reversing' : ''
 
     return (
-        <YmalProductWrapper>
-            <div className={`wrapperStyling ${classSet} ${classReversing}`}>
-                {ymalProducts.map((ymalProduct, index) => {
-                    const {id} = ymalProduct
-                    return (
-                        <YmalProduct> 
-                            <YmalItem 
-                            ymalProduct={ymalProduct}
-                            key={ymalProduct}
-                            style={{order: getOrder(index)}}
-                            onClick={()=>deleteProduct(id)}
-                            id={id}
-                            />
-                        </YmalProduct>
-                    )} 
-                )}
-            </div>
-        </YmalProductWrapper>
+        <DndProvider backend={HTML5Backend}> 
+            <YmalProductWrapper>
+                <div className={`wrapperStyling ${classSet} ${classReversing}`}>
+                    {ymalProducts.map((ymalProduct, index) => {
+                        const {id} = ymalProduct
+                        return (
+                            <YmalProduct > 
+                                <YmalItem 
+                                ymalProduct={ymalProduct}
+                                index={index}
+                                key={ymalProduct}
+                                style={{order: getOrder(index)}}
+                                onClick={()=>deleteProduct(id)}
+                                moveYmalProduct={moveYmalProduct}
+                                id={id}
+                                />
+                            </YmalProduct>
+                        )} 
+                    )}
+                </div>
+            </YmalProductWrapper>
+        </DndProvider>
     )}
 
 export default CarouselGrid;

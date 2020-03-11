@@ -21,6 +21,7 @@ public class YmalProductDataAccessService {
     List<YmalProduct> selectAllYmalProducts() {
         String sql = "" +
                 "SELECT "+
+                " rank," +
                 " ymal_id," +
                 " name, " +
                 " designer, " +
@@ -33,6 +34,7 @@ public class YmalProductDataAccessService {
 
     private RowMapper<YmalProduct> mapYmalProductFromDb() {
         return (resultSet, i) -> {
+            Integer rank = resultSet.getInt("rank");
             Integer ymal_id = resultSet.getInt("ymal_id");
             String name = resultSet.getString("name");
             String designer = resultSet.getString("designer");
@@ -40,6 +42,7 @@ public class YmalProductDataAccessService {
             String category =  resultSet.getString("category");
             Timestamp timestamp = resultSet.getTimestamp("timestamp");
             return new YmalProduct(
+                    rank,
                     ymal_id,
                     name,
                     designer,

@@ -15,6 +15,7 @@ public class YmalProduct {
     @Id
     private int ymal_id;
 
+    private int rank;
     private String name;
     private String designer;
     private String colour;
@@ -34,12 +35,14 @@ public class YmalProduct {
 
     public YmalProduct(
             @JsonProperty("ymal_id") int ymal_id,
+            @JsonProperty("rank") int rank,
             @JsonProperty("name") String name,
             @JsonProperty("designer") String designer,
             @JsonProperty("colour") String colour,
             @JsonProperty("category") String category,
             @JsonProperty("timestamp") Timestamp timestamp) {
         this.ymal_id = ymal_id;
+        this.rank = rank;
         this.name = name;
         this.designer = designer;
         this.colour = colour;
@@ -53,6 +56,14 @@ public class YmalProduct {
 
     public void setId(int ymal_id) {
         this.ymal_id = ymal_id;
+    }
+
+    public int getRank() {
+        return rank;
+    }
+
+    public void setRank(int rank) {
+        this.rank = rank;
     }
 
     public String getName() {

@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import CarouselGrid from './CarouselGrid';
 import LeftArrow from './LeftArrow';
 import RightArrow from './RightArrow';
+import update from 'immutability-helper';
 
 const carouselStyling = {
     display: 'flex',
@@ -26,7 +27,7 @@ class Carousel extends Component {
         this.prev = this.prev.bind(this)
         this.next = this.next.bind(this)
         this.resetSet = this.resetSet.bind(this)
-        this.state = {ref: 0, isSet: true, isReversing: false}
+        this.state = {ref: 0, isSet: true, isReversing: false, ymalProducts: []}
     }
 
     getOrder = (index) => {
@@ -39,6 +40,7 @@ class Carousel extends Component {
         }
 
         return ymalProducts.length + order
+        // console.log('getOrder has been called ' + addition)
     }
 
     resetSet = () => {
@@ -73,6 +75,16 @@ class Carousel extends Component {
             }, this.resetSet)
         } 
     }
+
+    moveYmalProduct = (dragIndex, hoverIndex) => {
+        const {ymalProducts} = this.state
+        const draggedYmalProduct = ymalProducts[dragIndex];
+        const updatedYmalProducts = update(ymalProducts, {
+            $splice: [[dragIndex, 1], [hoverIndex, 0, draggedYmalProduct]]
+        })
+        this.setState({ymalProducts: updatedYmalProducts})
+        // console.log('the moveProduct function is called')
+    };
     
     render() {
         const {ymalProducts} = this.props
@@ -88,7 +100,8 @@ class Carousel extends Component {
                     ymalProducts={ymalProducts}
                     isSet={isSet}
                     isReversing={isReversing}
-                    getOrder={this.getOrder}
+                    getOrder={this.getOrder.bind(this)}
+                    moveYmalProduct={this.moveYmalProduct.bind(this)}
                     />
                 </div>
                 <RightArrow 
