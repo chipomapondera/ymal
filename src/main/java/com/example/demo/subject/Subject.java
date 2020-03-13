@@ -38,7 +38,7 @@ public class Subject {
     private Timestamp timestamp;
 
     @UpdateTimestamp
-    @Column(name="time_updated", insertable = false, columnDefinition="TIMESTAMP default CURRENT_TIMESTAMP")
+    @Column(name="time_updated", insertable = false, columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
     private Timestamp timeUpdated;
 
     public Subject() {

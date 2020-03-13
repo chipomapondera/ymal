@@ -2,6 +2,7 @@ package com.example.demo.ymalProduct;
 
 import com.example.demo.subject.Subject;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.annotations.CreationTimestamp;
 
