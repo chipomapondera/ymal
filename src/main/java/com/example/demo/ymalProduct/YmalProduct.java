@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -15,20 +17,20 @@ public class YmalProduct {
 
     @Id
     private int ymal_id;
-
     private int rank;
     private String name;
     private String designer;
     private String colour;
     private String category;
 
+    @ManyToOne(cascade=CascadeType.PERSIST, fetch=FetchType.LAZY)
+    @JoinColumn(name="subject_id", nullable=false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private Subject subject;
+
     @CreationTimestamp
     @Column(name="timestamp", nullable = false, insertable = false, columnDefinition="TIMESTAMP default CURRENT_TIMESTAMP")
     private Timestamp timestamp;
-
-    @ManyToOne(cascade=CascadeType.PERSIST, fetch=FetchType.LAZY)
-    @JoinColumn(name="subject_id", nullable=false)
-    private Subject subject;
 
     public YmalProduct() {
         super();
@@ -99,11 +101,17 @@ public class YmalProduct {
         this.category = category;
     }
 
-    @JsonBackReference
+    public int getSubjectId() {
+        return subject.getId();
+    }
+
+//    @JsonBackReference
+    @JsonIgnore
     public Subject getSubject() {
         return subject;
     }
 
+    @JsonIgnore
     public void setSubject(Subject subject) {
         this.subject = subject;
     }
@@ -124,7 +132,6 @@ public class YmalProduct {
                 ", designer='" + designer + '\'' +
                 ", colour='" + colour + '\'' +
                 ", category='" + category + '\'' +
-//                ", timestamp='" + timestamp + '\'' +
                 '}';
     }
 }

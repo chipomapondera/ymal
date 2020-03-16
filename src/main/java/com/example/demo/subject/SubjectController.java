@@ -2,10 +2,11 @@ package com.example.demo.subject;
 
 import com.example.demo.ymalProduct.YmalProduct;
 import com.example.demo.ymalProduct.YmalProductRepository;
+import com.example.demo.ymalProduct.YmalProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-
 import javax.validation.Valid;
 import java.util.List;
 
@@ -16,33 +17,33 @@ public class SubjectController {
     SubjectRepository subjectRepository;
 
     @Autowired
+    YmalProductRepository ymalProductRepository;
+
+    @Autowired
     SubjectService subjectService;
 
     @Autowired
-    YmalProductRepository ymalProductRepository;
+    YmalProductService ymalProductService;
 
     @GetMapping(path = "/subjects")
     public List<Subject> getAllSubjects() {
 //        throw new ApiRequestException("Oops cannot get all subjects with custom exception");
-        return subjectRepository.findAll(Sort.by(Sort.Direction.DESC, "timestamp"));
+        return subjectService.getAllSubjects();
     }
 
-//    @PostMapping(path = "/subjects")
-//    public Subject addSubject(@RequestBody @Valid Subject subject) {
-//        subjectRepository.save(subject);
-//        return subject;
-//    }
-
-    @PostMapping(path = "/subjects")
+    @PostMapping(path = "/subject", consumes = MediaType.APPLICATION_JSON_VALUE)
     public @Valid Subject addSubject(@RequestBody @Valid Subject subject) {
-        subjectService.createOrUpdateSubject(subject);
-        return subject;
+        return subjectService.createSubject(subject);
     }
 
-    @PostMapping(path = "/ymalproducts")
-    public YmalProduct addYmalProduct(@RequestBody @Valid YmalProduct ymalProduct) {
-        ymalProductRepository.save(ymalProduct);
-        return ymalProduct;
+    @GetMapping(path = "/ymalproducts")
+    public List<YmalProduct> getYmalProducts() {
+        return ymalProductService.getAllYmalProducts();
+    }
+
+    @PostMapping(path = "/{subject_id}/ymalproduct", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public YmalProduct addYmalProduct(@PathVariable(value = "subject_id") int subject_id, @RequestBody @Valid YmalProduct ymalProduct) {
+        return ymalProductService.createYmalProduct(subject_id, ymalProduct);
     }
 
     @DeleteMapping(path = "/subjects/{subject_id}")

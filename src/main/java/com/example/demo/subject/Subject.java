@@ -107,10 +107,20 @@ public class Subject {
         this.category = category;
     }
 
-    @JsonManagedReference
+//    @JsonManagedReference
     public List<YmalProduct> getYmalProductList() {
         return ymalProductList;
     }
+
+//    public void addYmalProduct(YmalProduct ymalProduct) {
+//        this.ymalProductList.add(ymalProduct);
+//        ymalProduct.setSubject(this);
+//    }
+//
+//    public void removeYmalProduct(YmalProduct ymalProduct) {
+//        this.ymalProductList.remove(ymalProduct);
+//        ymalProduct.setSubject(null);
+//    }
 
     public void setYmalProductList(List<YmalProduct> ymalProductList) {
         this.ymalProductList = ymalProductList;
