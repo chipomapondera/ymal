@@ -26,7 +26,7 @@ public class YmalProduct {
     @Column(name="timestamp", nullable = false, insertable = false, columnDefinition="TIMESTAMP default CURRENT_TIMESTAMP")
     private Timestamp timestamp;
 
-    @ManyToOne(cascade=CascadeType.DETACH, fetch=FetchType.LAZY)
+    @ManyToOne(cascade=CascadeType.PERSIST, fetch=FetchType.LAZY)
     @JoinColumn(name="subject_id", nullable=false)
     private Subject subject;
 

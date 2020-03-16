@@ -1,6 +1,5 @@
 package com.example.demo.subject;
 
-import com.example.demo.exception.ApiRequestException;
 import com.example.demo.ymalProduct.YmalProduct;
 import com.example.demo.ymalProduct.YmalProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +16,9 @@ public class SubjectController {
     SubjectRepository subjectRepository;
 
     @Autowired
+    SubjectService subjectService;
+
+    @Autowired
     YmalProductRepository ymalProductRepository;
 
     @GetMapping(path = "/subjects")
@@ -25,9 +27,15 @@ public class SubjectController {
         return subjectRepository.findAll(Sort.by(Sort.Direction.DESC, "timestamp"));
     }
 
+//    @PostMapping(path = "/subjects")
+//    public Subject addSubject(@RequestBody @Valid Subject subject) {
+//        subjectRepository.save(subject);
+//        return subject;
+//    }
+
     @PostMapping(path = "/subjects")
-    public Subject addSubject(@RequestBody @Valid Subject subject) {
-        subjectRepository.save(subject);
+    public @Valid Subject addSubject(@RequestBody @Valid Subject subject) {
+        subjectService.createOrUpdateSubject(subject);
         return subject;
     }
 

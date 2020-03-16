@@ -1,21 +1,22 @@
 package com.example.demo.subject;
 
+import com.example.demo.exception.ApiRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import java.util.List;
 
 @Service
 public class SubjectService {
-
-    private final SubjectDataAccessService subjectDataAccessService;
+    private Subject subject;
 
     @Autowired
-    public SubjectService(SubjectDataAccessService subjectDataAccessService) {
-        this.subjectDataAccessService = subjectDataAccessService;
-    }
+    SubjectRepository subjectRepository;
 
-    public List<Subject> getAllSubjects() {
-        return subjectDataAccessService.selectAllSubjects();
+    public Subject createOrUpdateSubject(Subject subject) {
+        if (subject == null) {
+            throw new ApiRequestException("Oops cannot get all subjects with custom exception");
+        } else {
+            return subjectRepository.saveAndFlush(subject);
+        }
     }
 }
 
