@@ -6,7 +6,7 @@ const headerStyle = {
     justifyContent: 'center', 
     alignItems: 'center', 
     backgroundColor: '#000000', 
-    height: '70px'
+    height: '55px'
 }
 
 const headerText = {

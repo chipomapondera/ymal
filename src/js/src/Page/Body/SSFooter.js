@@ -86,7 +86,6 @@ class SSFooter extends Component {
                         <AddSubjectForm 
                             onSuccess={() => {
                                 this.closeAddSubjectModal();
-                                // this.handleSubmit();
                             }} 
                             onFailure={(error) => {
                                 const message = error.error.message;

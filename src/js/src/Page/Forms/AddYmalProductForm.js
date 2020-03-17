@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {Formik} from 'formik';
 import {Input, Tag} from 'antd';
 import {addNewYmalProduct} from '../../client';
@@ -24,131 +24,127 @@ const submitButtonStyling = {
     color: 'white'
 }
 
-class AddYmalProductForm extends Component {
-    render() {
-        const {subjectId} = this.props
+const AddYmalProductForm = ({subjectId, onSuccess, onFailure}) => {
+    return (
+        <div>
+            {/* <h1>Anywhere in your app!</h1> */}
+            <Formik
+                initialValues={{ subjectId: '', id: '', name: '', designer: '', colour: '', category: '' }}
+                validate={values => {
+                    let errors = {};
 
-        return (
-            <div>
-                {/* <h1>Anywhere in your app!</h1> */}
-                <Formik
-                    initialValues={{ subjectId: '', id: '', name: '', designer: '', colour: '', category: '' }}
-                    validate={values => {
-                        let errors = {};
+                    if (!values.subjectId) {
+                        errors.subjectId = 'Key Product ID Required';
+                    }
 
-                        if (!values.subjectId) {
-                            errors.subjectId = 'Key Product ID Required';
-                        }
+                    if (!values.id) {
+                        errors.id = 'Product ID Required';
+                    }
+                    
+                    if (!values.name) {
+                        errors.name = 'Product Name Required';
+                    }
 
-                        if (!values.id) {
-                            errors.id = 'Product ID Required';
-                        }
-                        
-                        if (!values.name) {
-                            errors.name = 'Product Name Required';
-                        }
+                    if (!values.designer) {
+                        errors.designer = 'Designer Required';
+                    }
 
-                        if (!values.designer) {
-                            errors.designer = 'Designer Required';
-                        }
+                    if (!values.colour) {
+                        errors.colour = 'Colour Required';
+                    }
 
-                        if (!values.colour) {
-                            errors.colour = 'Colour Required';
-                        }
-
-                        if (!values.category) {
-                            errors.category = 'Product Category Required';
-                        }
-                        return errors;
-                    }}
-                    onSubmit={(ymalProduct, { setSubmitting }) => {
-                        addNewYmalProduct(ymalProduct, subjectId).then(() => {
-                            this.props.onSuccess();
-                        })
-                        .catch(error => {
-                            this.props.onFailure(error);
-                        })
-                        .finally(() => {
-                            setSubmitting(false);
-                        })
-                    }}
-                    >
-                    {({
-                        values,
-                        errors,
-                        touched,
-                        handleChange,
-                        handleBlur,
-                        handleSubmit,
-                        isSubmitting,
-                        submitForm,
-                        isValid
-                        /* and other goodies */
-                    }) => (
-                        <form onSubmit={handleSubmit}>
-                        <Input
-                            style={inputSytling}
-                            name="subjectId"
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                            value={values.subjectId}
-                            placeholder='Key Product ID eg. 12345'
-                        />
-                        {errors.subjectId && touched.subjectId && <Tag style={tagStyling}>{errors.subjectId}</Tag>}
-                        <Input
-                            style={inputSytling}
-                            name="id"
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                            value={values.id}
-                            placeholder='Product ID eg. 12345'
-                        />
-                        {errors.id && touched.id && <Tag style={tagStyling}>{errors.id}</Tag>}
-                        <Input
-                            style={inputSytling}
-                            name="name"
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                            value={values.name}
-                            placeholder='Product Name eg. Evening Dress'
-                        />
-                        {errors.name && touched.name && <Tag style={tagStyling}>{errors.name}</Tag>}
-                        <Input
-                            style={inputSytling}
-                            name="designer"
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                            value={values.designer}
-                            placeholder='Designer eg. Balenciaga'
-                        />
-                        {errors.designer && touched.designer && <Tag style={tagStyling}>{errors.designer}</Tag>}
-                        <Input
-                            style={inputSytling}
-                            name="colour"
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                            value={values.colour}
-                            placeholder='Colour eg. White'
-                        />
-                        {errors.colour && touched.colour && <Tag style={tagStyling}>{errors.colour}</Tag>}
-                        <Input
-                            style={inputSytling}
-                            name="category"
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                            value={values.category}
-                            placeholder='Product Category eg. Dresses'
-                        />
-                        {errors.category && touched.category && <Tag style={tagStyling}>{errors.category}</Tag>}
-                        <button onClick={() => submitForm()} style={submitButtonStyling} type="submit" disabled={isSubmitting || (touched && !isValid)}>
-                            Submit
-                        </button>
-                        </form>
-                    )}
-                </Formik>
-            </div>
-        )
-    }
+                    if (!values.category) {
+                        errors.category = 'Product Category Required';
+                    }
+                    return errors;
+                }}
+                onSubmit={(ymalProduct, { setSubmitting }) => {
+                    addNewYmalProduct(ymalProduct, subjectId).then(() => {
+                        onSuccess();
+                    })
+                    .catch(error => {
+                        onFailure(error);
+                    })
+                    .finally(() => {
+                        setSubmitting(false);
+                    })
+                }}
+                >
+                {({
+                    values,
+                    errors,
+                    touched,
+                    handleChange,
+                    handleBlur,
+                    handleSubmit,
+                    isSubmitting,
+                    submitForm,
+                    isValid
+                    /* and other goodies */
+                }) => (
+                    <form onSubmit={handleSubmit}>
+                    <Input
+                        style={inputSytling}
+                        name="subjectId"
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        value={values.subjectId}
+                        placeholder='Key Product ID eg. 12345'
+                    />
+                    {errors.subjectId && touched.subjectId && <Tag style={tagStyling}>{errors.subjectId}</Tag>}
+                    <Input
+                        style={inputSytling}
+                        name="id"
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        value={values.id}
+                        placeholder='Product ID eg. 12345'
+                    />
+                    {errors.id && touched.id && <Tag style={tagStyling}>{errors.id}</Tag>}
+                    <Input
+                        style={inputSytling}
+                        name="name"
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        value={values.name}
+                        placeholder='Product Name eg. Evening Dress'
+                    />
+                    {errors.name && touched.name && <Tag style={tagStyling}>{errors.name}</Tag>}
+                    <Input
+                        style={inputSytling}
+                        name="designer"
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        value={values.designer}
+                        placeholder='Designer eg. Balenciaga'
+                    />
+                    {errors.designer && touched.designer && <Tag style={tagStyling}>{errors.designer}</Tag>}
+                    <Input
+                        style={inputSytling}
+                        name="colour"
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        value={values.colour}
+                        placeholder='Colour eg. White'
+                    />
+                    {errors.colour && touched.colour && <Tag style={tagStyling}>{errors.colour}</Tag>}
+                    <Input
+                        style={inputSytling}
+                        name="category"
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        value={values.category}
+                        placeholder='Product Category eg. Dresses'
+                    />
+                    {errors.category && touched.category && <Tag style={tagStyling}>{errors.category}</Tag>}
+                    <button onClick={() => submitForm()} style={submitButtonStyling} type="submit" disabled={isSubmitting || (touched && !isValid)}>
+                        Submit
+                    </button>
+                    </form>
+                )}
+            </Formik>
+        </div>
+    )
 }
 
 export default AddYmalProductForm;

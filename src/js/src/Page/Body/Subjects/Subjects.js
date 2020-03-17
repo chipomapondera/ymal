@@ -3,7 +3,6 @@ import SubjectItem from './SubjectItem';
 import SubjectFooter from './SubjectFooter';
 import {deleteSubject} from '../../../client';
 import Carousel from '../Carousel/Carousel';
-// import {Popconfirm} from 'antd';
 
 const SubjectWrapper = (props) => {
     return (
@@ -80,7 +79,7 @@ const Subjects = ({subjects}) => {
                             category={category} 
                         >
                             <div style={listingInfo}>
-                                <div style={{margin: '30px 0 0 30px'}}>
+                                <div style={{margin: '20px 0 0 20px'}}>
                                     <h3 style={{textAlign: 'left', fontWeight: 'bold', margin: 0}}>{designer}</h3>
                                     <p style={productDetails}>{name}  |   {id}</p>
                                     <p style={productDetails}>{colour}  |  {category}</p>

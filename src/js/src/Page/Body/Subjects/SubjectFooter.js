@@ -4,12 +4,13 @@ import {Modal} from 'antd';
 import AddYmalProductForm from '../../Forms/AddYmalProductForm';
 import {getAllSubjects} from '../../../client';
 import {errorNotification} from '../Notification';
+import './SubjectFooterStyles.scss';
 
 const bottomBanner = {
     display: 'flex',
     alignItems: 'center', 
     backgroundColor: '#dedede', 
-    height: '60px',
+    height: '50px',
 }
 
 const buttonDivStyling ={
@@ -55,7 +56,6 @@ class SubjectFooter extends Component {
     
     closeAddYmalModal = () => {
         this.setState({isAddYmalModalVisible: false})
-        this.fetchSubjects()
     }
     
     fetchSubjects = () => {
@@ -102,7 +102,7 @@ class SubjectFooter extends Component {
                         <AddYmalProductForm 
                             onSuccess={() => {
                                 this.closeAddYmalModal();
-                                // this.handleSubmit();
+                                this.fetchSubjects();
                             }} 
                             onFailure={(error) => {
                                 const message = error.error.message;
