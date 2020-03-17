@@ -32,13 +32,13 @@ class AddYmalProductForm extends Component {
             <div>
                 {/* <h1>Anywhere in your app!</h1> */}
                 <Formik
-                    initialValues={{ id: '', name: '', designer: '', colour: '', category: '' }}
+                    initialValues={{ subjectId: '', id: '', name: '', designer: '', colour: '', category: '' }}
                     validate={values => {
                         let errors = {};
 
-                        // if (!values.subject) {
-                        //     errors.id = 'Key Product ID Required';
-                        // }
+                        if (!values.subjectId) {
+                            errors.subjectId = 'Key Product ID Required';
+                        }
 
                         if (!values.id) {
                             errors.id = 'Product ID Required';
@@ -61,7 +61,7 @@ class AddYmalProductForm extends Component {
                         }
                         return errors;
                     }}
-                    onSubmit={(ymalProduct, subjectId, { setSubmitting }) => {
+                    onSubmit={(ymalProduct, { setSubmitting }) => {
                         addNewYmalProduct(ymalProduct, subjectId).then(() => {
                             this.props.onSuccess();
                         })
@@ -86,15 +86,15 @@ class AddYmalProductForm extends Component {
                         /* and other goodies */
                     }) => (
                         <form onSubmit={handleSubmit}>
-                        {/* <Input
+                        <Input
                             style={inputSytling}
-                            name="subject"
+                            name="subjectId"
                             onChange={handleChange}
                             onBlur={handleBlur}
-                            value={values.subject}
+                            value={values.subjectId}
                             placeholder='Key Product ID eg. 12345'
                         />
-                        {errors.subject && touched.subject && <Tag style={tagStyling}>{errors.subject}</Tag>} */}
+                        {errors.subjectId && touched.subjectId && <Tag style={tagStyling}>{errors.subjectId}</Tag>}
                         <Input
                             style={inputSytling}
                             name="id"
