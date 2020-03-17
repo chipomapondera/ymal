@@ -26,6 +26,8 @@ const submitButtonStyling = {
 
 class AddYmalProductForm extends Component {
     render() {
+        const {subjectId} = this.props
+
         return (
             <div>
                 {/* <h1>Anywhere in your app!</h1> */}
@@ -59,8 +61,8 @@ class AddYmalProductForm extends Component {
                         }
                         return errors;
                     }}
-                    onSubmit={(ymalProduct, { setSubmitting }) => {
-                        addNewYmalProduct(ymalProduct).then(() => {
+                    onSubmit={(ymalProduct, subjectId, { setSubmitting }) => {
+                        addNewYmalProduct(ymalProduct, subjectId).then(() => {
                             this.props.onSuccess();
                         })
                         .catch(error => {

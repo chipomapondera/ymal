@@ -46,10 +46,10 @@ class SubjectFooter extends Component {
         }
     };
 
-    openAddYmalModal = (id) => {
+    openAddYmalModal = (subjectId) => {
         this.setState({isAddYmalModalVisible: true})
-        this.props = id
-        console.log('button id: ' + id)
+        this.props = subjectId
+        console.log('button subjectId: ' + subjectId)
         
     }
     
@@ -83,13 +83,13 @@ class SubjectFooter extends Component {
 
     render() {
         const {isAddYmalModalVisible} = this.state;
-        const {id} = this.props
+        const {subjectId} = this.props
 
         return(
             <div style={bottomBanner}>
                 <Container>
                     <div style={buttonDivStyling}>
-                        <button style={ymalButtonStyling} onClick={this.openAddYmalModal.bind(this, id)}>Add YMAL Products</button>
+                        <button style={ymalButtonStyling} onClick={this.openAddYmalModal.bind(this, subjectId)}>Add YMAL Products</button>
                         <button style={saveButtonStyling}>Save</button>
                     </div>
                     <Modal
@@ -109,6 +109,7 @@ class SubjectFooter extends Component {
                                 const description = error.error.httpStatus
                                 errorNotification(message, description);
                             }}
+                            subjectId={subjectId}
                         />
                     </Modal>
                 </Container>

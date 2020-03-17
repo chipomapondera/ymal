@@ -101,7 +101,7 @@ const Subjects = ({subjects}) => {
                                     <Carousel ymalProducts={ymalProductList} />
                                 </div>
                             </div>
-                            <SubjectFooter id={id} />
+                            <SubjectFooter subjectId={id} />
                         </SubjectProduct>
                     ) 
                 } )} 
