@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import Container from '../Container';
+import Container from '../../Container';
 import {Modal} from 'antd';
-import AddYmalProductForm from '../Forms/AddYmalProductForm';
-import {getAllSubjects} from '../../client';
-import {errorNotification} from '../Body/Notification';
+import AddYmalProductForm from '../../Forms/AddYmalProductForm';
+import {getAllSubjects} from '../../../client';
+import {errorNotification} from '../Notification';
 
 const bottomBanner = {
     display: 'flex',
@@ -37,7 +37,7 @@ const saveButtonStyling = {
     color: 'white'
 }
 
-class ProductFooter extends Component {
+class SubjectFooter extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -46,22 +46,25 @@ class ProductFooter extends Component {
         }
     };
 
-    openAddYmalModal = () => {
+    openAddYmalModal = (id) => {
         this.setState({isAddYmalModalVisible: true})
-      }
-      closeAddYmalModal = () => {
+        this.props = id
+        console.log('button id: ' + id)
+        
+    }
+    
+    closeAddYmalModal = () => {
         this.setState({isAddYmalModalVisible: false})
         this.fetchSubjects()
-      }
-
-      fetchSubjects = () => {
+    }
+    
+    fetchSubjects = () => {
         this.setState({
             isFetching: true
         });
         getAllSubjects()
         .then(res => res.json())
         .then(subjects => {
-            console.log(subjects);
             this.setState({
                 subjects,
                 isFetching: false
@@ -80,11 +83,13 @@ class ProductFooter extends Component {
 
     render() {
         const {isAddYmalModalVisible} = this.state;
+        const {id} = this.props
+
         return(
             <div style={bottomBanner}>
                 <Container>
                     <div style={buttonDivStyling}>
-                        <button style={ymalButtonStyling} onClick={this.openAddYmalModal}>Add YMAL Products</button>
+                        <button style={ymalButtonStyling} onClick={this.openAddYmalModal.bind(this, id)}>Add YMAL Products</button>
                         <button style={saveButtonStyling}>Save</button>
                     </div>
                     <Modal
@@ -112,4 +117,4 @@ class ProductFooter extends Component {
     }
 }
 
-export default ProductFooter;
+export default SubjectFooter;

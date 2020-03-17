@@ -24,12 +24,8 @@ public class SubjectService {
         return subjectRepository.save(subject);
     }
 
-//    public Subject createOrUpdateSubject(Subject subject) {
-//        if (subject == null) {
-//            throw new ApiRequestException("Oops cannot get all subjects with custom exception");
-//        } else {
-//            return subjectRepository.saveAndFlush(subject);
-//        }
+//    public Subject removeSubject(Subject subject) {
+//        return subjectRepository.deleteById();
 //    }
 }
 

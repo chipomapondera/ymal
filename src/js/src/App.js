@@ -73,30 +73,6 @@ class App extends Component {
     })
   }
 
-  // fetchYmalProducts = () => {
-  //   this.setState({
-  //     isFetching: true
-  //   });
-  //   getAllYmalProducts()
-  //     .then(res => res.json())
-  //     .then(ymalProducts => {
-  //        console.log(ymalProducts);
-  //        this.setState({
-  //          ymalProducts,
-  //          isFetching: false
-  //       });
-  //     })
-  //     .catch(error => {
-  //       const message = error.error.message;
-  //       const description = error.error.error;
-  //       errorNotification(message, description);
-  //       console.log(message)
-  //       this.setState({
-  //         isFetching: false
-  //       })
-  //     })
-  // }
-
   render() {
 
     const {subjects, isFetching, isAddSubjectModalVisible, isAddYmalModalVisible} = this.state;

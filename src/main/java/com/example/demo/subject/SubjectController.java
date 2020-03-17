@@ -47,12 +47,12 @@ public class SubjectController {
     }
 
     @DeleteMapping(path = "/subjects/{subject_id}")
-    public void deleteSubject(@PathVariable("subject_id") int subject_id) {
+    public void deleteSubject(@PathVariable int subject_id) {
         subjectRepository.deleteById(subject_id);
     }
 
     @DeleteMapping(path="ymalproducts/{ymal_id}")
-    public void deleteYmalProduct(@PathVariable("ymal_id") int ymal_id) {
+    public void deleteYmalProduct(@PathVariable int ymal_id) {
         ymalProductRepository.deleteById(ymal_id);
     }
 }

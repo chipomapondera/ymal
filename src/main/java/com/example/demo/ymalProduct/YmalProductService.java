@@ -5,8 +5,6 @@ import com.example.demo.subject.Subject;
 import com.example.demo.subject.SubjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import javax.swing.text.html.Option;
 import java.util.*;
 
 @Service

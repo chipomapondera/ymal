@@ -30,13 +30,13 @@ class AddYmalProductForm extends Component {
             <div>
                 {/* <h1>Anywhere in your app!</h1> */}
                 <Formik
-                    initialValues={{ subject: '', id: '', name: '', designer: '', colour: '', category: '' }}
+                    initialValues={{ id: '', name: '', designer: '', colour: '', category: '' }}
                     validate={values => {
                         let errors = {};
 
-                        if (!values.subject) {
-                            errors.id = 'Key Product ID Required';
-                        }
+                        // if (!values.subject) {
+                        //     errors.id = 'Key Product ID Required';
+                        // }
 
                         if (!values.id) {
                             errors.id = 'Product ID Required';
@@ -84,7 +84,7 @@ class AddYmalProductForm extends Component {
                         /* and other goodies */
                     }) => (
                         <form onSubmit={handleSubmit}>
-                        <Input
+                        {/* <Input
                             style={inputSytling}
                             name="subject"
                             onChange={handleChange}
@@ -92,7 +92,7 @@ class AddYmalProductForm extends Component {
                             value={values.subject}
                             placeholder='Key Product ID eg. 12345'
                         />
-                        {errors.subject && touched.subject && <Tag style={tagStyling}>{errors.subject}</Tag>}
+                        {errors.subject && touched.subject && <Tag style={tagStyling}>{errors.subject}</Tag>} */}
                         <Input
                             style={inputSytling}
                             name="id"

@@ -1,6 +1,6 @@
 import React from 'react';
 import SubjectItem from './SubjectItem';
-import ProductFooter from '../ProductFooter';
+import SubjectFooter from './SubjectFooter';
 import {deleteSubject} from '../../../client';
 import Carousel from '../Carousel/Carousel';
 // import {Popconfirm} from 'antd';
@@ -101,7 +101,7 @@ const Subjects = ({subjects}) => {
                                     <Carousel ymalProducts={ymalProductList} />
                                 </div>
                             </div>
-                            <ProductFooter />
+                            <SubjectFooter id={id} />
                         </SubjectProduct>
                     ) 
                 } )} 

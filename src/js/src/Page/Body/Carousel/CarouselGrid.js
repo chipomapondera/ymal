@@ -23,7 +23,7 @@ const YmalProduct = (props) => {
 
 const CarouselGrid = ({ymalProducts, isSet, isReversing, getOrder, moveYmalProduct}) => { 
     
-    console.log('this is the ymalProducts array ' + ymalProducts)
+    // console.log('this is the ymalProducts array ' + ymalProducts)
 
     const deleteProduct = (id) => { 
         deleteYmalProduct(id);

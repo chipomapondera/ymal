@@ -88,6 +88,7 @@ class Carousel extends Component {
     
     render() {
         const {ymalProducts} = this.props
+        const index = ymalProducts.index
         const {isSet, isReversing} = this.state
 
         return (
@@ -100,7 +101,7 @@ class Carousel extends Component {
                     ymalProducts={ymalProducts}
                     isSet={isSet}
                     isReversing={isReversing}
-                    getOrder={this.getOrder.bind(this)}
+                    getOrder={this.getOrder.bind(this, index)}
                     moveYmalProduct={this.moveYmalProduct.bind(this)}
                     />
                 </div>
