@@ -1,5 +1,7 @@
 import React, {useRef} from 'react';
 import {useDrag, useDrop} from 'react-dnd';
+import { Popconfirm } from 'antd';
+import './YmalItemStyles.scss';
 
 const ymalProductDivStyle = {
     minWidth: '120px', 
@@ -23,7 +25,7 @@ const textWrapper = {
     padding: '10px 10px 5px'
 }
 
-const removeButtonStyling = {
+const deleteButtonStyling = {
     width: '70px', 
     height: '15px', 
     backgroundColor: 'white',
@@ -82,7 +84,15 @@ const YmalItem = ({ymalProduct, index, moveYmalProduct, onClick}) => {
                 <p style={paragraphStyle}>{category}</p>
             </div>
             <div>
-                <button style={removeButtonStyling} onClick={onClick} >Remove</button>
+                <Popconfirm 
+                placement='top'
+                title={`Are you sure you want to delete ${id} ?`}
+                onConfirm={onClick} 
+                onCancel={e => e.stopPropagation()}
+                okText="Yes" 
+                cancelText="No">
+                    <button style={deleteButtonStyling} type='danger' onClick={(e) => e.stopPropagation()}>Delete</button>
+                </Popconfirm>
             </div>
         </div>
     )

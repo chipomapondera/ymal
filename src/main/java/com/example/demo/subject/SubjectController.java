@@ -1,14 +1,17 @@
 package com.example.demo.subject;
 
+import com.example.demo.exception.ApiRequestException;
 import com.example.demo.ymalProduct.YmalProduct;
 import com.example.demo.ymalProduct.YmalProductRepository;
 import com.example.demo.ymalProduct.YmalProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+
+import javax.swing.text.html.Option;
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class SubjectController {
@@ -27,8 +30,13 @@ public class SubjectController {
 
     @GetMapping(path = "/subjects")
     public List<Subject> getAllSubjects() {
-//        throw new ApiRequestException("Oops cannot get all subjects with custom exception");
-        return subjectService.getAllSubjects();
+        List<Subject> subject = subjectService.getAllSubjects();
+//        List<Subject> subject = null;
+
+        if (subject == null)
+            throw new ApiRequestException("Oops cannot get all subjects");
+
+        return subject;
     }
 
     @PostMapping(path = "/subject", consumes = MediaType.APPLICATION_JSON_VALUE)

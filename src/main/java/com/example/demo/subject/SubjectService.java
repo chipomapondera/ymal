@@ -23,9 +23,5 @@ public class SubjectService {
     public Subject createSubject(Subject subject) {
         return subjectRepository.save(subject);
     }
-
-//    public Subject removeSubject(Subject subject) {
-//        return subjectRepository.deleteById();
-//    }
 }
 

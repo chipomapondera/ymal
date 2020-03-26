@@ -38,34 +38,40 @@ class SSFooter extends Component {
     };
 
     openAddSubjectModal = () => {
-        this.setState({isAddSubjectModalVisible: true})
-    };
+        this.setState(() => {
+          return {isAddSubjectModalVisible: true}
+        });
+    }
 
     closeAddSubjectModal = () => {
-        this.setState({isAddSubjectModalVisible: false})
+        this.setState(() => {
+            return {isAddSubjectModalVisible: false}
+        });
         this.handleSubmit()
     };
 
     handleSubmit = () => {
-        this.setState({
-            isFetching: true
+        this.setState(() => {
+            return {isFetching: true}
           });
         getAllSubjects()
         .then(res => res.json())
         .then(subjects => {
             console.log('new subjects added' + subjects);
-            this.setState({
-                subjects,
-                isFetching: false
+            this.setState(() => {
+                return {
+                    subjects,
+                    isFetching: false
+                }
             });
         })
         .catch(error => {
             const message = error.error.message;
-            const description = error.error.error;
-            errorNotification(message, description);
-            console.log(message)
-            this.setState({
-              isFetching: false
+            const status = error.error.httpStatus;
+            errorNotification(message, status);
+            console.log('message: ' + message, ', status: ' + status)
+            this.setState(() => {
+              return {isFetching: false}
             });
         })
     }
@@ -75,7 +81,7 @@ class SSFooter extends Component {
         return(
             <div style={footerStyling}>
                 <Container>
-                    <button style={footerButtonStyling} onClick={this.openAddSubjectModal}>Add New Product +</button>
+                    <button style={footerButtonStyling} className="add-subject" onClick={this.openAddSubjectModal}>Add New Product +</button>
                     <Modal
                         title='Add New Product'
                         visible={isAddSubjectModalVisible} 

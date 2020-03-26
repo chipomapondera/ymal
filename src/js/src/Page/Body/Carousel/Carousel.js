@@ -3,6 +3,8 @@ import CarouselGrid from './CarouselGrid';
 import LeftArrow from './LeftArrow';
 import RightArrow from './RightArrow';
 import update from 'immutability-helper';
+import {getAllSubjects} from '../../../client';
+import {errorNotification} from '../../Body/Notification';
 
 const carouselStyling = {
     display: 'flex',
@@ -30,6 +32,31 @@ class Carousel extends Component {
         this.state = {ref: 0, isSet: true, isReversing: false, ymalProducts: []}
     }
 
+    fetchSubjects = () => {
+        this.setState(() => {
+            return {isFetching: true}
+        });
+        getAllSubjects()
+        .then(res => res.json())
+        .then(subjects => {
+            this.setState(() => {
+                return {
+                    subjects,
+                    isFetching: true
+                }
+            });
+        })
+        .catch(error => {
+            const message = error.error.message;
+            const status = error.error.httpStatus;
+            errorNotification(message, status);
+            console.log('message: ' + message, ', status: ' + status)
+            this.setState(() => {
+              return {isFetching: false}
+            });
+        })
+    }
+
     getOrder = (index) => {
         const {ymalProducts} = this.props
         const {ref} = this.state
@@ -44,8 +71,10 @@ class Carousel extends Component {
     }
 
     resetSet = () => {
-        setTimeout(()=>{
-            this.setState({isSet: true})
+        setTimeout(() => {
+            this.setState(() => {
+                return {isSet: true}
+            });
         }, 50)
     }
 
@@ -54,12 +83,14 @@ class Carousel extends Component {
         const newRef = ref - 1
 
         if (newRef >= 0) {
-            this.setState({
-                ref: newRef,
-                isSet: false,
-                isReversing: true,
-            }, this.resetSet)
-        } 
+            this.setState(() => {
+                return {
+                    ref: newRef,
+                    isSet: false,
+                    isReversing: true,
+                }, this.resetSet
+            }
+        )} 
     }
 
     next = () => {
@@ -68,12 +99,14 @@ class Carousel extends Component {
         const newRef = ref + 1
 
         if (newRef <= ymalProducts.length) {
-            this.setState({
-                ref: newRef,
-                isSet: false,
-                isReversing: false,
-            }, this.resetSet)
-        } 
+            this.setState(() => {
+                return {
+                    ref: newRef,
+                    isSet: false,
+                    isReversing: false,
+                }, this.resetSet
+            }
+        )} 
     }
 
     moveYmalProduct = (dragIndex, hoverIndex) => {
@@ -82,8 +115,10 @@ class Carousel extends Component {
         const updatedYmalProducts = update(ymalProducts, {
             $splice: [[dragIndex, 1], [hoverIndex, 0, draggedYmalProduct]]
         })
-        this.setState({ymalProducts: updatedYmalProducts})
-        // console.log('the moveProduct function is called')
+        this.setState(() => {
+            return {ymalProducts: updatedYmalProducts}
+            // console.log('the moveProduct function is called')
+        });
     };
     
     render() {

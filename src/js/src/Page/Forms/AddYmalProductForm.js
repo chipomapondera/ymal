@@ -2,6 +2,7 @@ import React from 'react';
 import {Formik} from 'formik';
 import {Input, Tag} from 'antd';
 import {addNewYmalProduct} from '../../client';
+import { notification } from 'antd';
 
 const inputSytling = {
     marginBottom: '15px'
@@ -25,6 +26,9 @@ const submitButtonStyling = {
 }
 
 const AddYmalProductForm = ({subjectId, onSuccess, onFailure}) => {
+
+    const openNotificationWithIcon = (type, message, description) => notification[type]({message, description})
+
     return (
         <div>
             {/* <h1>Anywhere in your app!</h1> */}
@@ -61,6 +65,7 @@ const AddYmalProductForm = ({subjectId, onSuccess, onFailure}) => {
                 onSubmit={(ymalProduct, { setSubmitting }) => {
                     addNewYmalProduct(ymalProduct, subjectId).then(() => {
                         onSuccess();
+                        openNotificationWithIcon('success', 'Product added', `YMAL Product ${ymalProduct.id} was added`);
                     })
                     .catch(error => {
                         onFailure(error);
@@ -82,7 +87,9 @@ const AddYmalProductForm = ({subjectId, onSuccess, onFailure}) => {
                     isValid
                     /* and other goodies */
                 }) => (
-                    <form onSubmit={handleSubmit}>
+                    <form 
+                    onSubmit={handleSubmit}
+                    >
                     <Input
                         style={inputSytling}
                         name="subjectId"

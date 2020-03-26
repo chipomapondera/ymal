@@ -1,4 +1,6 @@
 import React from 'react';
+import { Popconfirm } from 'antd';
+import './SubjectItemStyles.scss';
 
 const subjectDivStyle = {
     minWidth: '120px', 
@@ -9,7 +11,7 @@ const subjectDivStyle = {
     margin: '30px 30px'
 }
 
-const removeButtonStyling = {
+const deleteButtonStyling = {
     width: '70px', 
     height: '15px', 
     backgroundColor: 'white',
@@ -44,10 +46,15 @@ const SubjectItem = ({subject, onClick}) => {
                 <p style={paragraphStyle}>{category}</p>
             </div>
             <div>
-                <button 
-                style={removeButtonStyling} 
-                onClick={onClick}
-                >Remove</button>
+                <Popconfirm 
+                placement='top'
+                title={`Are you sure you want to delete ${id} ?`}
+                onConfirm={onClick} 
+                onCancel={e => e.stopPropagation()}
+                okText="Yes" 
+                cancelText="No">
+                    <button style={deleteButtonStyling} type='danger' onClick={(e) => e.stopPropagation()}>Delete</button>
+                </Popconfirm>
             </div>
         </div>
     )

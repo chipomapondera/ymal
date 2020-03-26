@@ -19,7 +19,6 @@ class App extends Component {
       super(props)
       this.state = {
       subjects: [],
-      // ymalProducts: [],
       isFetching: false,
       isAddSubjectModalVisible: false,
       isAddYmalModalVisible: false,
@@ -28,47 +27,54 @@ class App extends Component {
 
   componentDidMount() {
     this.fetchSubjects();
-    // this.fetchYmalProducts();
   }
 
   openAddSubjectModal = () => {
-    this.setState({isAddSubjectModalVisible: true})
+    this.setState(() => {
+      return {isAddSubjectModalVisible: true}
+    });
   }
+
   closeAddSubjectModal = () => {
-    this.setState({isAddSubjectModalVisible: false})
+    this.setState(() => {
+      return {isAddSubjectModalVisible: false}
+    });
   }
 
   openAddYmalModal = () => {
-    this.setState({
-      isAddYmalModalVisible: true
-    })
+    this.setState(() => {
+      return {isAddYmalModalVisible: true}
+    });
   }
+
   closeAddYmalModal = () => {
-    this.setState({
-      isAddYmalModalVisible: false,
+    this.setState(() => {
+      return {isAddYmalModalVisible: false}
     });
   }
 
   fetchSubjects = () => {
-    this.setState({
-      isFetching: true
+    this.setState(() => {
+      return {isFetching: true}
     });
     getAllSubjects()
     .then(res => res.json())
     .then(subjects => {
       console.log(subjects);
-      this.setState({
-        subjects,
-        isFetching: false
+      this.setState(() => {
+        return {
+          subjects,
+          isFetching: false
+        }
       });
     })
     .catch(error => {
       const message = error.error.message;
-      const description = error.error.error;
-      errorNotification(message, description);
-      console.log(message)
-      this.setState({
-        isFetching: false
+      const status = error.error.httpStatus;
+      errorNotification(message, status);
+      console.log('message: ' + message, ', status: ' + status)
+      this.setState(() => {
+        return {isFetching: false}
       });
     })
   }
@@ -88,7 +94,6 @@ class App extends Component {
     return(
       <SSPage 
         subjects={subjects} 
-        // ymalProducts={ymalProducts} 
         isFetching={isFetching}
         isAddSubjectModalVisible={isAddSubjectModalVisible} 
         isAddYmalModalVisible={isAddYmalModalVisible} 

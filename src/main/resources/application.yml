@@ -21,4 +21,3 @@ app:
   datasource:
     jdbc-url: jdbc:mysql://localhost:3306/YMAL?useSSL=false
     username: root
-    password: Monday2019!

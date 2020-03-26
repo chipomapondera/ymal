@@ -3,6 +3,7 @@ import SubjectItem from './SubjectItem';
 import SubjectFooter from './SubjectFooter';
 import {deleteSubject} from '../../../client';
 import Carousel from '../Carousel/Carousel';
+import { notification } from 'antd';
 
 const SubjectWrapper = (props) => {
     return (
@@ -59,8 +60,14 @@ const countStyle = {
 
 const Subjects = ({subjects}) => {
 
+    const openNotificationWithIcon = (type, message, description) => notification[type]({message, description})
+
     const deleteSubjectProduct = (id) => {
-        deleteSubject(id)
+        deleteSubject(id).then(() => {
+            openNotificationWithIcon('success', 'Product deleted', `Subject ${id} was deleted`);
+        }).catch(error => {
+            openNotificationWithIcon('error', 'error', `(${error.error.message} ${error.error.httpStatus}`)
+        });
     }
 
     return (
@@ -100,7 +107,10 @@ const Subjects = ({subjects}) => {
                                     <Carousel ymalProducts={ymalProductList} />
                                 </div>
                             </div>
-                            <SubjectFooter subjectId={id} />
+                            <SubjectFooter 
+                            subjectId={id}
+                            ymalProducts={ymalProductList}
+                            />
                         </SubjectProduct>
                     ) 
                 } )} 

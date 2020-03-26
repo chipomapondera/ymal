@@ -2,6 +2,7 @@ import React from 'react';
 import {Formik} from 'formik';
 import {Input, Tag} from 'antd';
 import {addNewSubject} from '../../client';
+import { notification } from 'antd';
 
 const inputSytling = {
     marginBottom: '15px'
@@ -25,6 +26,8 @@ const submitButtonStyling = {
 }
 
 const AddSubjectForm = ({onSuccess, onFailure}) => {
+    const openNotificationWithIcon = (type, message, description) => notification[type]({message, description})
+
     return (
         <div>
             {/* <h1>Anywhere in your app!</h1> */}
@@ -57,6 +60,7 @@ const AddSubjectForm = ({onSuccess, onFailure}) => {
                 onSubmit={(subject, { setSubmitting }) => {
                     addNewSubject(subject).then(() => {
                         onSuccess();
+                        openNotificationWithIcon('success', 'Product added', `Subject ${subject.id} was added`);
                     })
                     .catch(error => {
                         onFailure(error);
