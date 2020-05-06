@@ -43,47 +43,71 @@ class SubjectFooter extends Component {
         super(props)
         this.state = {
             isAddYmalModalVisible: false,
-            // isFetching: false
-        }
+            isFetching: false,
+            ymalProducts: this.props.ymalProducts
+        };
+        this.updateYmalProducts = this.updateYmalProducts.bind(this);
     };
 
+    componentDidMount() {
+        this.fetchSubjects();
+    }
+
     openAddYmalModal = (subjectId) => {
-        this.setState({isAddYmalModalVisible: true})
+        this.setState(() => {
+            return {isAddYmalModalVisible: true}
+        });
         this.props = subjectId
-        console.log('button subjectId: ' + subjectId)
-        
+        console.log('button subjectId: ' + subjectId) 
     }
     
     closeAddYmalModal = () => {
-        this.setState({isAddYmalModalVisible: false})
+        this.setState(() => {
+            return {isAddYmalModalVisible: false}
+        });
+    } 
+
+    updateYmalProducts = (ymalProduct) => {
+        this.props = ymalProduct
+        console.log(ymalProduct)
+        const newYmalProductsList = this.state.ymalProducts;
+        newYmalProductsList.push(ymalProduct)
+        this.setState(() => {
+            return {ymalProducts: newYmalProductsList}
+        })
+        console.log(this.state.ymalProducts);
+        return this.state.ymalProducts; 
     }
     
     fetchSubjects = () => {
-        this.setState({
-            isFetching: true
+        this.setState(() => {
+            return {isFetching: true}
         });
         getAllSubjects()
         .then(res => res.json())
         .then(subjects => {
-            this.setState({
-                subjects,
-                isFetching: false
+            this.setState(() => {
+                return {
+                    subjects,
+                    isFetching: true
+                }
             });
         })
         .catch(error => {
             const message = error.error.message;
-            const description = error.error.error;
-            errorNotification(message, description);
-            console.log(message)
-            this.setState({
-              isFetching: false
+            const status = error.error.httpStatus;
+            errorNotification(message, status);
+            console.log('message: ' + message, ', status: ' + status)
+            this.setState(() => {
+              return {isFetching: false}
             });
         })
     }
 
     render() {
         const {isAddYmalModalVisible} = this.state;
-        const {subjectId} = this.props
+        const {subjectId, ymalProduct} = this.props
+        // console.log('render', this.props, this.state);
 
         return(
             <div style={bottomBanner}>
@@ -102,7 +126,7 @@ class SubjectFooter extends Component {
                         <AddYmalProductForm 
                             onSuccess={() => {
                                 this.closeAddYmalModal();
-                                this.fetchSubjects();
+                                this.updateYmalProducts(ymalProduct);
                             }} 
                             onFailure={(error) => {
                                 const message = error.error.message;

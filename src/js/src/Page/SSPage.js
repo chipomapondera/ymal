@@ -30,7 +30,6 @@ const SSPage = ({subjects, isFetching, isAddSubjectModalVisible, isAddYmalModalV
                 <BodyWrapper style={bodyStyling}> 
                     <Subjects 
                         subjects={subjects} 
-                        // ymalProducts={ymalProducts} 
                         isFetching={isFetching}
                         isAddYmalModalVisible={isAddYmalModalVisible}
                         openAddSubjectModal={openAddSubjectModal} 

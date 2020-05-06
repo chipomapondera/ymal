@@ -76,6 +76,7 @@ const Subjects = ({subjects}) => {
                 {subjects.map((subject, index) => {
                     const {id, name, designer, colour, category, ymalProductList} = subject
                     const ymalProducts = subject.ymalProductList
+                    const ymalProduct = ymalProducts[index];
                     const numberOfYmals = ymalProducts.length
                     return (
                         <SubjectProduct 
@@ -110,6 +111,7 @@ const Subjects = ({subjects}) => {
                             <SubjectFooter 
                             subjectId={id}
                             ymalProducts={ymalProductList}
+                            ymalProduct={ymalProduct}
                             />
                         </SubjectProduct>
                     ) 
