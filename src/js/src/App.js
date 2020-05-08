@@ -79,6 +79,14 @@ class App extends Component {
     })
   }
 
+  setSubjects = (newSubjects) => {
+    this.setState(() => {
+      return {
+        subjects: newSubjects
+      }
+    })
+  }
+
   render() {
 
     const {subjects, isFetching, isAddSubjectModalVisible, isAddYmalModalVisible} = this.state;
@@ -99,6 +107,7 @@ class App extends Component {
         isAddYmalModalVisible={isAddYmalModalVisible} 
         openAddSubjectModal={this.openAddSubjectModal.bind(this)}
         openAddYmalModal={this.openAddYmalModal.bind(this)}
+        setSubjects={this.setSubjects.bind(this)}
       />
     )
   }

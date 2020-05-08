@@ -62,7 +62,7 @@ const AddYmalProductForm = ({subjectId, onSuccess, onFailure}) => {
                     }
                     return errors;
                 }}
-                onSubmit={(ymalProduct, { setSubmitting }) => {
+                onSubmit={(ymalProduct, { setSubmitting, resetForm }) => {
                     addNewYmalProduct(ymalProduct, subjectId).then(() => {
                         onSuccess();
                         openNotificationWithIcon('success', 'Product added', `YMAL Product ${ymalProduct.id} was added`);
@@ -72,6 +72,7 @@ const AddYmalProductForm = ({subjectId, onSuccess, onFailure}) => {
                     })
                     .finally(() => {
                         setSubmitting(false);
+                        resetForm();
                     })
                 }}
                 >
