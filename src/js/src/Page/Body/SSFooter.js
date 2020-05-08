@@ -64,7 +64,7 @@ class SSFooter extends Component {
                     isFetching: false
                 }
             });
-            this.props.setSubjects(subjects);
+            this.props.setNewSubjects(subjects);
         })
         .catch(error => {
             const message = error.error.message;

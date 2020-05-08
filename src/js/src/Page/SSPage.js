@@ -22,7 +22,7 @@ const bodyStyling = {
     flexDirection: 'row'
 }
 
-const SSPage = ({subjects, isFetching, isAddSubjectModalVisible, isAddYmalModalVisible, openAddSubjectModal, openAddYmalModal, setSubjects}) => {
+const SSPage = ({subjects, isFetching, isAddSubjectModalVisible, isAddYmalModalVisible, openAddSubjectModal, openAddYmalModal, setNewSubjects}) => {
     if(subjects && subjects.length) {
         return (
             <Container>
@@ -38,7 +38,7 @@ const SSPage = ({subjects, isFetching, isAddSubjectModalVisible, isAddYmalModalV
                         isFetching={isFetching}
                         isAddSubjectModalVisible={isAddSubjectModalVisible} 
                         openAddYmalModal={openAddYmalModal} 
-                        setSubjects={setSubjects}
+                        setNewSubjects={setNewSubjects}
                     />
                 </BodyWrapper>
             </Container>

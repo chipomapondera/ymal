@@ -79,12 +79,12 @@ class App extends Component {
     })
   }
 
-  setSubjects = (newSubjects) => {
+  setNewSubjects = (newSubjects) => {
     this.setState(() => {
       return {
         subjects: newSubjects
       }
-    })
+    });
   }
 
   render() {
@@ -107,7 +107,7 @@ class App extends Component {
         isAddYmalModalVisible={isAddYmalModalVisible} 
         openAddSubjectModal={this.openAddSubjectModal.bind(this)}
         openAddYmalModal={this.openAddYmalModal.bind(this)}
-        setSubjects={this.setSubjects.bind(this)}
+        setNewSubjects={this.setNewSubjects.bind(this)}
       />
     )
   }
