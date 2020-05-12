@@ -58,17 +58,25 @@ const countStyle = {
     fontSize: '14px'
 }
 
-const Subjects = ({subjects}) => {
+const Subjects = ({subjects, updateSubject, setDeleteSubjects}) => {
 
     const openNotificationWithIcon = (type, message, description) => notification[type]({message, description})
 
     const deleteSubjectProduct = (id) => {
         deleteSubject(id).then(() => {
             openNotificationWithIcon('success', 'Product deleted', `Subject ${id} was deleted`);
+            setDeleteSubjects(id);
         }).catch(error => {
             openNotificationWithIcon('error', 'error', `(${error.error.message} ${error.error.httpStatus}`)
         });
     }
+
+    const updateYmalProductList = (updatedYmalProductList, subjectId) => {
+        // Create the new subject with the updated product list
+        let newSubject = subjects.find(subject => subject.id = subjectId);
+        newSubject.ymalProductList = updatedYmalProductList;
+        updateSubject(newSubject);
+    }    
 
     return (
         <SubjectWrapper>
@@ -112,6 +120,7 @@ const Subjects = ({subjects}) => {
                             subjectId={id}
                             ymalProducts={ymalProductList}
                             ymalProduct={ymalProduct}
+                            updateYmalProductList={updateYmalProductList}
                             />
                         </SubjectProduct>
                     ) 

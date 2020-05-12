@@ -79,10 +79,36 @@ class App extends Component {
     })
   }
 
+  updateSubject = (updatedSubject) => {
+    // We have arry of subjects
+      // One of the subjects has updated
+      // Find that index in the array
+      // And set it to the new updated subject
+    let newSubjects = this.state.subjects;
+    let index = newSubjects.findIndex(subject => subject.id == updatedSubject.id);
+    newSubjects[index] = updatedSubject;
+    this.setState(() => {
+      return {
+        subjects: newSubjects
+      }
+    })
+  }
+
   setNewSubjects = (newSubjects) => {
     this.setState(() => {
       return {
         subjects: newSubjects
+      }
+    });
+  }
+
+  setDeleteSubjects = (id) => {
+    let subjects = this.state.subjects
+    let index = subjects.findIndex(subject => subject.id == id)
+    subjects.splice(index, 1)
+    this.setState(() => {
+      return { 
+        subjects
       }
     });
   }
@@ -108,6 +134,8 @@ class App extends Component {
         openAddSubjectModal={this.openAddSubjectModal.bind(this)}
         openAddYmalModal={this.openAddYmalModal.bind(this)}
         setNewSubjects={this.setNewSubjects.bind(this)}
+        setDeleteSubjects={this.setDeleteSubjects.bind(this)}
+        updateSubject={this.updateSubject.bind(this)}
       />
     )
   }
