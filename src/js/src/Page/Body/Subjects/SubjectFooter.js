@@ -43,15 +43,10 @@ class SubjectFooter extends Component {
         super(props)
         this.state = {
             isAddYmalModalVisible: false,
-            isFetching: false,
             ymalProducts: this.props.ymalProducts
         };
         this.updateYmalProducts = this.updateYmalProducts.bind(this);
     };
-
-    componentDidMount() {
-        this.fetchSubjects();
-    }
 
     openAddYmalModal = (subjectId) => {
         this.setState(() => {
@@ -68,40 +63,14 @@ class SubjectFooter extends Component {
     } 
 
     updateYmalProducts = (ymalProduct) => {
-        this.props = ymalProduct
-        console.log(ymalProduct)
         const newYmalProductsList = this.state.ymalProducts;
         newYmalProductsList.push(ymalProduct)
         this.setState(() => {
             return {ymalProducts: newYmalProductsList}
-        })
+        }) 
+        this.props.updateYmalProductList(this.state.ymalProducts, this.props.subjectId)
         console.log(this.state.ymalProducts);
         return this.state.ymalProducts; 
-    }
-    
-    fetchSubjects = () => {
-        this.setState(() => {
-            return {isFetching: true}
-        });
-        getAllSubjects()
-        .then(res => res.json())
-        .then(subjects => {
-            this.setState(() => {
-                return {
-                    subjects,
-                    isFetching: true
-                }
-            });
-        })
-        .catch(error => {
-            const message = error.error.message;
-            const status = error.error.httpStatus;
-            errorNotification(message, status);
-            console.log('message: ' + message, ', status: ' + status)
-            this.setState(() => {
-              return {isFetching: false}
-            });
-        })
     }
 
     render() {
@@ -124,9 +93,9 @@ class SubjectFooter extends Component {
                         width={900}
                     >
                         <AddYmalProductForm 
-                            onSuccess={() => {
+                            onSuccess={(ymalProductCreated) => {
                                 this.closeAddYmalModal();
-                                this.updateYmalProducts(ymalProduct);
+                                this.updateYmalProducts(ymalProductCreated);
                             }} 
                             onFailure={(error) => {
                                 const message = error.error.message;

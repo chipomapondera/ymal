@@ -64,7 +64,8 @@ public class Subject {
 
     @OneToMany(mappedBy="subject", orphanRemoval=true, cascade=CascadeType.ALL)
     @LazyCollection(LazyCollectionOption.FALSE)
-    @OrderBy("rank asc")
+    // @OrderBy("rank asc")
+    @OrderBy("timestamp asc")
     private List<YmalProduct> ymalProductList = new ArrayList<>();
 
     public int getId() {
