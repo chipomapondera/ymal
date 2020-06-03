@@ -16,12 +16,16 @@ import java.sql.Timestamp;
 public class YmalProduct {
 
     @Id
+    private int id;
     private int ymal_id;
     private int rank;
     private String name;
     private String designer;
     private String colour;
     private String category;
+    private Integer versionId;
+    private String versionAction;
+
 
     @ManyToOne(cascade=CascadeType.PERSIST, fetch=FetchType.LAZY)
     @JoinColumn(name="subject_id", nullable=false)
@@ -122,6 +126,22 @@ public class YmalProduct {
 
     public void setTimestamp(Timestamp timestamp) {
         this.timestamp = timestamp;
+    }
+
+    public Integer getVersionId() {
+        return versionId;
+    }
+
+    public void setVersionId(Integer versionId) {
+        this.versionId = versionId;
+    }
+
+    public String getVersionAction() {
+        return versionAction;
+    }
+
+    public void setVersionAction(String versionAction) {
+        this.versionAction = versionAction;
     }
 
     @Override

@@ -12,6 +12,7 @@ spring:
     enabled: true
     validateOnMigrate: false
   jpa:
+    show-sql: true
     hibernate:
       ddl-auto: update
   application:
@@ -21,3 +22,7 @@ app:
   datasource:
     jdbc-url: jdbc:mysql://localhost:3306/YMAL?useSSL=false
     username: root
+
+logging:
+  level:
+    root: DEBUG

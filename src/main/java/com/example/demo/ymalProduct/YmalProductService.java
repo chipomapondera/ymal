@@ -16,8 +16,16 @@ public class YmalProductService {
     @Autowired
     YmalProductRepository ymalProductRepository;
 
-    public List <YmalProduct> getAllYmalProducts() {
-        return ymalProductRepository.findAll();
+    public List <YmalProduct> getAllActiveYmalProducts() {
+        return ymalProductRepository.findByVersionActionIsNull();
+    }
+
+    public List <YmalProduct> getAllCreatableYmalProducts() {
+        return ymalProductRepository.findByVersionAction("create");
+    }
+
+    public void saveYmalProduct(YmalProduct ymalProduct) {
+        ymalProductRepository.save(ymalProduct);
     }
 
     public Optional<YmalProduct> getYmalProductById(int ymal_id) {
@@ -38,6 +46,8 @@ public class YmalProductService {
         Subject subject = byId.get();
 
         ymalProduct.setSubject(subject);
+
+        ymalProduct.setVersionAction("create");
 
         YmalProduct ymalProduct1 = ymalProductRepository.save(ymalProduct);
 

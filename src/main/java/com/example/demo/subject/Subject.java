@@ -66,6 +66,7 @@ public class Subject {
     @LazyCollection(LazyCollectionOption.FALSE)
     // @OrderBy("rank asc")
     @OrderBy("timestamp asc")
+    @Where(clause = "version_action is null")
     private List<YmalProduct> ymalProductList = new ArrayList<>();
 
     public int getId() {
