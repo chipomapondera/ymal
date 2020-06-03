@@ -32,30 +32,30 @@ class Carousel extends Component {
         this.state = {ref: 0, isSet: true, isReversing: false, ymalProducts: []}
     }
 
-    fetchSubjects = () => {
-        this.setState(() => {
-            return {isFetching: true}
-        });
-        getAllSubjects()
-        .then(res => res.json())
-        .then(subjects => {
-            this.setState(() => {
-                return {
-                    subjects,
-                    isFetching: true
-                }
-            });
-        })
-        .catch(error => {
-            const message = error.error.message;
-            const status = error.error.httpStatus;
-            errorNotification(message, status);
-            console.log('message: ' + message, ', status: ' + status)
-            this.setState(() => {
-              return {isFetching: false}
-            });
-        })
-    }
+    // fetchSubjects = () => {
+    //     this.setState(() => {
+    //         return {isFetching: true}
+    //     });
+    //     getAllSubjects()
+    //     .then(res => res.json())
+    //     .then(subjects => {
+    //         this.setState(() => {
+    //             return {
+    //                 subjects,
+    //                 isFetching: true
+    //             }
+    //         });
+    //     })
+    //     .catch(error => {
+    //         const message = error.error.message;
+    //         const status = error.error.httpStatus;
+    //         errorNotification(message, status);
+    //         console.log('message: ' + message, ', status: ' + status)
+    //         this.setState(() => {
+    //           return {isFetching: false}
+    //         });
+    //     })
+    // }
 
     getOrder = (index) => {
         const {ymalProducts} = this.props

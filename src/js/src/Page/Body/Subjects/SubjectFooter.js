@@ -38,6 +38,16 @@ const saveButtonStyling = {
     color: 'white'
 }
 
+// const undoButtonStyling = {
+//     marginRight: '30px', 
+//     width: '120px', 
+//     height: '30px', 
+//     backgroundColor: 'black', 
+//     fontSize: '10px', 
+//     fontWeight: 'bold', 
+//     color: 'white'
+// }
+
 class SubjectFooter extends Component {
     constructor(props) {
         super(props)
@@ -84,6 +94,7 @@ class SubjectFooter extends Component {
                     <div style={buttonDivStyling}>
                         <button style={ymalButtonStyling} onClick={this.openAddYmalModal.bind(this, subjectId)}>Add YMAL Products</button>
                         <button style={saveButtonStyling}>Save</button>
+                        {/* <button style={undoButtonStyling}>Undo</button> */}
                     </div>
                     <Modal
                         title='Add YMAL Product'

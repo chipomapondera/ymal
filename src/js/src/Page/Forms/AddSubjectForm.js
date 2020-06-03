@@ -59,7 +59,7 @@ const AddSubjectForm = ({onSuccess, onFailure}) => {
                 }}
                 onSubmit={(subject, { setSubmitting, resetForm }) => {
                     addNewSubject(subject).then(() => {
-                        onSuccess();
+                        onSuccess(subject);
                         openNotificationWithIcon('success', 'Product added', `Subject ${subject.id} was added`);
                     })
                     .catch(error => {

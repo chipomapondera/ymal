@@ -4,6 +4,7 @@ import SSHeader from './Header/SSHeader';
 import Subjects from '../Page/Body/Subjects/Subjects';
 import SSFooter from './Body/SSFooter';
 import {Empty} from 'antd';
+import SubjectContext from '../SubjectContext';
 
 const emptyLogo = {
     marginTop: '150px'
@@ -22,26 +23,15 @@ const bodyStyling = {
     flexDirection: 'row'
 }
 
-const SSPage = ({subjects, isFetching, isAddSubjectModalVisible, isAddYmalModalVisible, openAddSubjectModal, openAddYmalModal, updateSubject, setNewSubjects, setDeleteSubjects}) => {
+const SSPage = () => {
+    const {subjects} = React.useContext(SubjectContext)
     if(subjects && subjects.length) {
         return (
             <Container>
                 <SSHeader />
                 <BodyWrapper style={bodyStyling}> 
-                    <Subjects 
-                        subjects={subjects} 
-                        isFetching={isFetching}
-                        isAddYmalModalVisible={isAddYmalModalVisible}
-                        openAddSubjectModal={openAddSubjectModal} 
-                        setDeleteSubjects={setDeleteSubjects}
-                        updateSubject={updateSubject}
-                    />
-                    <SSFooter 
-                        isFetching={isFetching}
-                        isAddSubjectModalVisible={isAddSubjectModalVisible} 
-                        openAddYmalModal={openAddYmalModal} 
-                        setNewSubjects={setNewSubjects}
-                    />
+                    <Subjects />
+                    <SSFooter />
                 </BodyWrapper>
             </Container>
         )
