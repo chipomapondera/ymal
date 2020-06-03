@@ -44,24 +44,14 @@ public class SubjectController {
         return subjectService.createSubject(subject);
     }
 
-    @PostMapping(path = "/save")
-    public void save() {
-        List<YmalProduct> ymalProducts = ymalProductService.getAllCreatableYmalProducts();
-        for (YmalProduct product: ymalProducts
-             ) {
-            product.setVersionAction(null);
-            ymalProductService.saveYmalProduct(product);
-        }
-    }
-
     @GetMapping(path = "/ymalproducts")
     public List<YmalProduct> getYmalProducts() {
-        return ymalProductService.getAllActiveYmalProducts();
+        return ymalProductService.getAllYmalProducts();
     }
 
     @PostMapping(path = "/{subject_id}/ymalproduct", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public YmalProduct addYmalProduct(@PathVariable(value = "subject_id") int subject_id, @RequestBody @Valid YmalProduct ymalProduct) {
-        return ymalProductService.createYmalProduct(subject_id, ymalProduct);
+    public void addYmalProduct(@PathVariable(value = "subject_id") int subject_id, @RequestBody @Valid List<YmalProduct> ymalProducts) {
+        ymalProductService.replaceYmalProducts(subject_id, ymalProducts);
     }
 
     @DeleteMapping(path = "/subjects/{subject_id}")

@@ -16,16 +16,8 @@ public class YmalProductService {
     @Autowired
     YmalProductRepository ymalProductRepository;
 
-    public List <YmalProduct> getAllActiveYmalProducts() {
-        return ymalProductRepository.findByVersionActionIsNull();
-    }
-
-    public List <YmalProduct> getAllCreatableYmalProducts() {
-        return ymalProductRepository.findByVersionAction("create");
-    }
-
-    public void saveYmalProduct(YmalProduct ymalProduct) {
-        ymalProductRepository.save(ymalProduct);
+    public List <YmalProduct> getAllYmalProducts() {
+        return ymalProductRepository.findAll();
     }
 
     public Optional<YmalProduct> getYmalProductById(int ymal_id) {
@@ -47,14 +39,23 @@ public class YmalProductService {
 
         ymalProduct.setSubject(subject);
 
-        ymalProduct.setVersionAction("create");
-
         YmalProduct ymalProduct1 = ymalProductRepository.save(ymalProduct);
 
         ymalProductList.add(ymalProduct1);
-        subject1.setYmalProductList((List<YmalProduct>) ymalProductList);
+        subject1.setYmalProductList(ymalProductList);
 
         return ymalProduct1;
+    }
+
+    public void replaceYmalProducts(int subject_id, List<YmalProduct> newYmalProductsList) {
+        Optional<Subject> byId = subjectRepository.findById(subject_id);
+        if (!byId.isPresent()) {
+            throw new ApiRequestException("Oops subject with ID " + subject_id + "does not exist");
+        }
+        Subject subject = byId.get();
+
+        subject.setYmalProductList(newYmalProductsList);
+        subjectRepository.save(subject);
     }
 
 }
