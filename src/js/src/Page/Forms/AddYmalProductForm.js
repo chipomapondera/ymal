@@ -28,6 +28,7 @@ const submitButtonStyling = {
 const AddYmalProductForm = ({subjectId, onSuccess, onFailure}) => {
 
     const openNotificationWithIcon = (type, message, description) => notification[type]({message, description})
+    let ymalArr = []
 
     return (
         <div>
@@ -62,16 +63,27 @@ const AddYmalProductForm = ({subjectId, onSuccess, onFailure}) => {
                     }
                     return errors;
                 }}
+                // onSubmit={(ymalProduct, { setSubmitting, resetForm }) => {
+                //     addNewYmalProduct(ymalProduct, subjectId).then(() => {
+                //         onSuccess(ymalProduct);
+                //         openNotificationWithIcon('success', 'Product added', `YMAL Product ${ymalProduct.id} was added`);
+                //     })
+                //     .catch(error => {
+                //         onFailure(error);
+                //     })
+                //     .finally(() => {
+                //         setSubmitting(false);
+                //         resetForm();
+                //     })
+                // }}
                 onSubmit={(ymalProduct, { setSubmitting, resetForm }) => {
-                    addNewYmalProduct(ymalProduct, subjectId).then(() => {
-                        onSuccess(ymalProduct);
+                    new Promise((resolve, reject) => {
+                        onSuccess(ymalProduct)
                         openNotificationWithIcon('success', 'Product added', `YMAL Product ${ymalProduct.id} was added`);
+                        resolve()
                     })
-                    .catch(error => {
-                        onFailure(error);
-                    })
-                    .finally(() => {
-                        setSubmitting(false);
+                    .then(() => { 
+                        setSubmitting(false)
                         resetForm();
                     })
                 }}

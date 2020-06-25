@@ -98,8 +98,8 @@ class SubjectFooter extends Component {
                                 this.updateYmalProducts(ymalProductCreated);
                             }} 
                             onFailure={(error) => {
-                                const message = error.error.message;
-                                const description = error.error.httpStatus
+                                const message = error.message;
+                                const description = error.httpStatus
                                 errorNotification(message, description);
                             }}
                             subjectId={subjectId}
